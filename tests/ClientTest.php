@@ -41,7 +41,7 @@ class ClientTest extends \SynergiTech\Creditsafe\Tests\Base
         $this->expectException(\SynergiTech\Creditsafe\Exception\Unauthorized::class);
         $this->expectExceptionCode(400);
         $this->expectExceptionMessage('authentication failed');
-        
+
         $client->authenticate();
     }
 

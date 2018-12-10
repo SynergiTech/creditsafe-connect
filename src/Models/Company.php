@@ -27,7 +27,7 @@ class Company
     private $mortgageSummary;
     private $mortgages;
     private $negativeInfo;
-
+    private $financialStatements;
     /**
      * Function constructs the Company Class
      * @param array $client         Used to store the client in the Company Class

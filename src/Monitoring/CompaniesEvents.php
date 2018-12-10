@@ -1,4 +1,5 @@
 <?php
+
 namespace SynergiTech\Creditsafe\Monitoring;
 
 use SynergiTech\Creditsafe\Client;
@@ -10,7 +11,7 @@ class CompaniesEvents
 {
     private $client;
     private $id;
-    
+
     /**
      * This Constructor builds the CompaniesEvents Class
      * @param array $client This variable stores the client in the CompaniesEvents Class

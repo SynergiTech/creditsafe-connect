@@ -1,6 +1,5 @@
 <?php
 
-
 namespace SynergiTech\Creditsafe\Models;
 
 /**
@@ -119,7 +118,10 @@ class CompanySearchResult
     {
         return  new \DateTime($this->dateOfLatestChange);
     }
-
+    /**
+     *  Gets the company from a company searches result
+     * @return Company Returns the Company Report
+     */
     public function get()
     {
         return $this->client->companies()->get($this->getID());

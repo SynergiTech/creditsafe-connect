@@ -1,6 +1,5 @@
 <?php
 
-
 namespace SynergiTech\Creditsafe\Models\Company;
 
 use SynergiTech\Creditsafe\Models\Company;
@@ -45,7 +44,6 @@ class FinancialStatement
     }
 
     /**
-     * [
      * @return string Return contingentLiabilities
      */
     public function getContingentLiabilities() : string
@@ -118,7 +116,7 @@ class FinancialStatement
 
     /**
      *
-     * @return string [description]
+     * @return string Return Type
      */
     public function getType() : string
     {

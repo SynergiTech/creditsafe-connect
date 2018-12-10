@@ -19,7 +19,7 @@ class Client
      * construct function that builds the client class
      * @param array $config creditsafe configuration
      */
-    public function __construct($config = [])
+    public function __construct(array $config = [])
     {
         $this->config = array_merge($this->getDefaultConfig(), $config);
 
@@ -101,15 +101,15 @@ class Client
         $this->checkToken();
 
         $guzzleArgs =  [
-             'headers' => [
-                 'Authorization' => (string) $this->token
-             ],
-         ];
-
+            'headers' => [
+                'Authorization' => (string) $this->token
+            ],
+        ];
+        
         if ($type == 'GET') {
-            $guzzleArgs ['query']= $params ;
+            $guzzleArgs['query'] = $params;
         } else {
-            $guzzleArgs['json']= $params ;
+            $guzzleArgs['json'] = $params;
         }
 
         try {

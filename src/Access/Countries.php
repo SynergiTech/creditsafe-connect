@@ -7,6 +7,7 @@ use SynergiTech\Creditsafe\Client;
 /**
  * This class is used to get access to the countries endpoint
  */
+
 class Countries
 {
     private $client;

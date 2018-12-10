@@ -63,7 +63,7 @@ class ListResult implements \Iterator
      * @param  int    $num  Passes the page number
      * @return array  Returns  the current Record Set
      */
-    public function page(int $num)
+    public function page(int $num) : array
     {
         if ($num === $this->currentPagePos) {
             return $this->currentRecordSet;
@@ -104,7 +104,7 @@ class ListResult implements \Iterator
 
     /**
      * Get the current page
-     * @return void
+     * @return array
      */
     public function current()
     {
@@ -115,7 +115,7 @@ class ListResult implements \Iterator
      * Get the next page
      * @return void
      */
-    public function next()
+    public function next() : void
     {
         $this->currentRecordPos++;
         if ($this->currentRecordPos > $this->maxPageRecord) {
@@ -125,9 +125,9 @@ class ListResult implements \Iterator
 
     /**
      * Get the key of a position
-     * @return void
+     * @return int
      */
-    public function key()
+    public function key() : int
     {
         return $this->currentRecordPos - ($this->pageSize * ($this->currentPagePos-1));
     }
@@ -136,7 +136,7 @@ class ListResult implements \Iterator
      * Check if a position is valid
      * @return bool
      */
-    public function valid()
+    public function valid() : bool
     {
         return !($this->key() >= count($this->currentRecordSet) && count($this->currentRecordSet) != $this->pageSize);
     }
