@@ -18,10 +18,11 @@ class ListResult implements \Iterator
 
     /**
      * This constructor is used to build the ListResult
-     * @param Client $client      [description]
-     * @param string $targetClass [description]
-     * @param string $endpoint    [description]
-     * @param array $params      [description]
+     * @param Client $client       Used to set the client in the ListResult Class
+     * @param string $targetClass  Used to set a dynamic class in the LisrResult Class
+     *  allowing for ListResult to be used on different classes
+     * @param string $endpoint    Used to set the endpoint for which the ListResult Class is using
+     * @param array $params      Used tp set the params for which the ListResult Class is using
      */
     public function __construct(Client $client, string $targetClass, string $endpoint, array $params)
     {

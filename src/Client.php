@@ -64,7 +64,7 @@ class Client
     /**
      * set token
      * @param string $token Token must be set to have access
-     *  to the api and is only valid for a hour
+     *  to the api and is only valid for an hour
      * @return void
      */
     public function setToken(string $token) : void
@@ -90,9 +90,9 @@ class Client
 
     /**
      * This request function handles all requests for the api
-     * @param  string $type     Stores the type of HTTP Request e.g GET ,POST
-     * @param  string $endpoint Stores the endpoint
-     * @param  array  $params   Stores params for a endpoint
+     * @param  string $type     Sets the type of HTTP Request e.g GET ,POST
+     * @param  string $endpoint Sets the endpoint
+     * @param  array  $params   Sets params for a endpoint
      * @return array    Returns the results of the endpoint
      */
     public function request(string $type, string $endpoint, array $params = []) : array
@@ -152,9 +152,9 @@ class Client
     }
 
     /**
-     *  A function that handles the creation of GET  Request
-     * @param  string $endpoint  A endpoint used to create a request
-     * @param  array  $params   Stores params for a endpoint
+     *  A function that handles the creation of a GET  Request
+     * @param  string $endpoint  An endpoint used to create an request
+     * @param  array  $params   Sets params for a endpoint
      * @return array  Returns the results of the endpoint
      */
     public function get(string $endpoint, array $params = []) : array

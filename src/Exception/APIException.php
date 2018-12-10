@@ -11,13 +11,13 @@ class APIException extends \RuntimeException
 
     /**
      *  Sets the CorrelationID
-     * @param string  Contains the CorrelationID
+     * @param string $correlationID Contains the CorrelationID
      */
     public function setCorrelationID(string $correlationID) : void
     {
         $this->correlationID = $correlationID;
     }
-    
+
     /**
      * Get CorrelationID
      * @return ?string Contains the CorrelationID

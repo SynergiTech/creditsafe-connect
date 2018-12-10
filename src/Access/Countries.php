@@ -13,7 +13,7 @@ class Countries
 
     /**
      * This Constructor builds the Countries Class
-     * @param  $client This variable stores the client in the Countries Class
+     * @param Client $client This variable stores the client in the Countries Class
      */
     public function __construct(Client $client)
     {
