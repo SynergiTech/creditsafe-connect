@@ -105,7 +105,7 @@ class Client
                 'Authorization' => (string) $this->token
             ],
         ];
-        
+
         if ($type == 'GET') {
             $guzzleArgs['query'] = $params;
         } else {
