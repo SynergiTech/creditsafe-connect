@@ -1,6 +1,5 @@
 <?php
 
-
 namespace SynergiTech\Creditsafe\Models\Company;
 
 use SynergiTech\Creditsafe\Models\Company;
@@ -24,12 +23,14 @@ class Director
     {
         $this->company = $company;
         $this->directorDetails = $directorDetails;
-        //Add if statement to check if position exists
-        if (isset($this->directorDetails['positions']['0']['dateAppointed'])) {
-        //Can't assign datetime due to previousDirectors not having dateAppointed
-            $this->directorDetails['positions']['0']['dateAppointed'] = new \DateTime($directorDetails['positions']['0']['dateAppointed']);
-        }
-        $this->current = $current;
+        $this->directorDetails['positions'] = array_map(function ($position) {
+            //Add if statement to check if position exists
+            if (isset($position['dateAppointed'])) {
+            //Can't assign datetime due to previousDirectors not having dateAppointed
+                $position['dateAppointed'] = new \DateTime($position['dateAppointed']);
+            }
+            return $position;
+        }, $this->directorDetails['positions']);
     }
 
     /**

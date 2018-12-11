@@ -122,7 +122,7 @@ class CompanySearchResult
      *  Gets the company from a company searches result
      * @return Company Returns the Company Report
      */
-    public function get()
+    public function get() : Company
     {
         return $this->client->companies()->get($this->getID());
     }

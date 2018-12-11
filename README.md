@@ -23,13 +23,13 @@ $creditsafe->countries()->access($params = []);
 ### Search criteria using country code
 ```php
 
-$creditsafe->companies()->searchCriteria(['countries'=>'GB']);
+$creditsafe->companies()->searchCriteria(['countries' => 'GB']);
 
 
 ```
 ### Company search pagination
 ```php
-$search = $creditsafe->companies()->search(['countries'=>'GB', 'name' => 'GOOGLE UK LIMITED']);
+$search = $creditsafe->companies()->search(['countries' => 'GB', 'name' => 'GOOGLE UK LIMITED']);
 $search->setPageSize(100);
 foreach ($search as $result) {
     $company = $result->get();

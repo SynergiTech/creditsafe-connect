@@ -22,7 +22,6 @@ class FinancialStatement
     {
         $this->company = $company;
         $this->statementDetails = $statementDetails;
-        var_dump($statementDetails);
     }
 
     /**

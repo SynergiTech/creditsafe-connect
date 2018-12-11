@@ -36,7 +36,7 @@ class ListResult implements \Iterator
     /**
      * Set PageSize
      * @param  int  $size Stores the PageSize
-     * @return self   Returns PageSize
+     * @return self
      */
     public function setPageSize(int $size) : self
     {
@@ -49,7 +49,7 @@ class ListResult implements \Iterator
      * Get  Params
      * @return array Return Params
      */
-    private function getParams(): array
+    private function getParams() : array
     {
         $pageParams = ['page' => $this->currentPagePos];
         if ($this->pageSize !== null) {
