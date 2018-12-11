@@ -1,13 +1,13 @@
 <?php
 
-namespace SynergiTech\Creditsafe\Monitoring;
+namespace SynergiTech\Creditsafe\Service;
 
 use SynergiTech\Creditsafe\Client;
 
 /**
  * This class is used to call the Company Events Endpoint
  */
-class CompaniesEvents
+class CompanyEventService
 {
     private $client;
     private $id;
@@ -27,7 +27,7 @@ class CompaniesEvents
      * @param  array  $params  Params for the endpoint
      * @return array  Returns the results of the endpoint
      */
-    public function companiesEvents(string $id, array $params) : array
+    public function companyEvents(string $id, array $params) : array
     {
         return $this->client->get('monitoring/companies/'.$id.'/events', $params);
     }

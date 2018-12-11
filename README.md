@@ -17,7 +17,7 @@ $creditsafe = new \SynergiTech\Creditsafe\Client($config);
 
 ### Access countries and their codes
 ```php
-$creditsafe->countries()->access($params = []);
+$creditsafe->countries()->access();
 ```
 
 ### Search criteria using country code

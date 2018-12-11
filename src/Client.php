@@ -164,36 +164,36 @@ class Client
 
     /**
      * Get Company Events
-     * @return Monitoring\CompaniesEvents Returns Company Events
+     * @return Service\CompanyEventService Returns Company Events
      */
-    public function monitoring() : Monitoring\CompaniesEvents
+    public function monitoring() : Service\CompanyEventService
     {
         if (!isset($this->monitor)) {
-            $this->monitor = new Monitoring\CompaniesEvents($this);
+            $this->monitor = new Service\CompanyEventService($this);
         }
         return $this->monitor;
     }
 
     /**
      *  Get company services
-     * @return Services\CompanyServices Returns Company Services
+     * @return Service\CompanyService Returns Company Services
      */
-    public function companies() : Services\CompanyServices
+    public function companies() : Service\CompanyService
     {
         if (!isset($this->company)) {
-            $this->company = new Services\CompanyServices($this);
+            $this->company = new Service\CompanyService($this);
         }
         return $this->company;
     }
 
     /**
      *  Get Countries
-     * @return Access\Countries  Returns the Countries
+     * @return Service\CountryService  Returns the Countries
      */
-    public function countries() : Access\Countries
+    public function countries() : Service\CountryService
     {
         if (!isset($this->countries)) {
-            $this->countries = new Access\Countries($this);
+            $this->countries = new Service\CountryService($this);
         }
         return $this->countries;
     }

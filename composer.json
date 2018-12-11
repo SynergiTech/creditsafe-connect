@@ -2,6 +2,7 @@
     "name": "synergitech/creditsafe-connect",
     "type": "library",
     "require": {
+        "php": ">=7.1",
         "guzzlehttp/guzzle": "^6.3",
         "lcobucci/jwt": "^3.2.5"
     },

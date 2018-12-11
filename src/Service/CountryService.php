@@ -1,6 +1,6 @@
 <?php
 
-namespace SynergiTech\Creditsafe\Access;
+namespace SynergiTech\Creditsafe\Service;
 
 use SynergiTech\Creditsafe\Client;
 
@@ -8,7 +8,7 @@ use SynergiTech\Creditsafe\Client;
  * This class is used to get access to the countries endpoint
  */
 
-class Countries
+class CountryService
 {
     private $client;
 
@@ -23,11 +23,10 @@ class Countries
 
     /**
      * This access function is called by the client to get the access countries endpoint
-     * @param  array
      * @return array  Returns the results of the endpoint in an array
      */
-    public function access(array $params) : array
+    public function access()
     {
-        return $this->client->get('access/countries', $params);
+        return $this->client->get('access/countries', []);
     }
 }

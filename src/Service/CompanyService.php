@@ -1,6 +1,6 @@
 <?php
 
-namespace SynergiTech\Creditsafe\Services;
+namespace SynergiTech\Creditsafe\Service;
 
 use \SynergiTech\Creditsafe\ListResult;
 use \SynergiTech\Creditsafe\Models\CompanySearchResult;
@@ -9,7 +9,7 @@ use \SynergiTech\Creditsafe\Models\Company;
 /**
  * This class is used by the client to call endpoints relating to a company
  */
-class CompanyServices
+class CompanyService
 {
     private $client;
     private $id;
@@ -43,7 +43,7 @@ class CompanyServices
     {
         return new Company($this->client, $this->client->get('companies/'.$id));
     }
-    
+
     /**
      * This function is used to call the endpoint that gets the search Criteria
      *  for companies based on the country code given

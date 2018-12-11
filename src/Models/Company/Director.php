@@ -23,6 +23,10 @@ class Director
     {
         $this->company = $company;
         $this->directorDetails = $directorDetails;
+        if (isset($this->directorDetails['dateOfBirth'])) {
+            $this->directorDetails['dateOfBirth'] =  new \DateTime($this->directorDetails['dateOfBirth']);
+        }
+
         $this->directorDetails['positions'] = array_map(function ($position) {
             //Add if statement to check if position exists
             if (isset($position['dateAppointed'])) {
@@ -31,6 +35,7 @@ class Director
             }
             return $position;
         }, $this->directorDetails['positions']);
+        $this->current = $current;
     }
 
     /**
@@ -75,7 +80,7 @@ class Director
      */
     public function getDateOfBirth() : \DateTime
     {
-        return new \DateTime($this->directorDetails['dateOfBirth']);
+        return $this->directorDetails['dateOfBirth'];
     }
 
     /**

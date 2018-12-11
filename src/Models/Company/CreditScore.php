@@ -26,7 +26,10 @@ class CreditScore
         $this->currentCreditRating = $creditScore['currentCreditRating'] ?? null;
         $this->currentContractLimit = $creditScore['currentContractLimit'] ?? null;
         $this->previousCreditRating = $creditScore['previousCreditRating'] ?? null;
-        $this->latestRatingChangeDate = $creditScore['latestRatingChangeDate'] ?? null;
+        $this->latestRatingChangeDate = null;
+        if (isset($creditScore['latestRatingChangeDate'])) {
+            $this->latestRatingChangeDate = new \DateTime($creditScore['latestRatingChangeDate']);
+        }
     }
 
     /**
@@ -62,6 +65,6 @@ class CreditScore
      */
     public function getLatestRatingChangeDate() : ?\DateTime
     {
-         return $this->latestRatingChangeDate !== null ? new \DateTime($this->latestRatingChangeDate) : null;
+         return $this->latestRatingChangeDate;
     }
 }

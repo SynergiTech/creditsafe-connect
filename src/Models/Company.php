@@ -39,17 +39,21 @@ class Company
     {
         $this->client = $client;
         $this->companyID = $companyDetails['report']['companyId'];
-        $this->businessName = $companyDetails['report']['companyIdentification']['basicInformation']['businessName'];
-        $this->registeredCompanyName = $companyDetails['report']['companyIdentification']['basicInformation']['registeredCompanyName'];
-        $this->companyRegistrationNumber = $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationNumber'];
-        $this->country = $companyDetails['report']['companyIdentification']['basicInformation']['country'];
-        $this->companyRegistrationDate = $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'];
-        $this->mainAddress = $companyDetails['report']['contactInformation']['mainAddress'];
-        $this->otherAddresses = $companyDetails['report']['contactInformation']['otherAddresses'];
+        $this->businessName = $companyDetails['report']['companyIdentification']['basicInformation']['businessName'] ?? null;
+        $this->registeredCompanyName = $companyDetails['report']['companyIdentification']['basicInformation']['registeredCompanyName'] ?? null;
+        $this->companyRegistrationNumber = $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationNumber'] ?? null;
+        $this->country = $companyDetails['report']['companyIdentification']['basicInformation']['country'] ?? null;
+        $this->companyRegistrationDate = null;
+        if (isset($companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'])) {
+            $this->companyRegistrationDate = new \DateTime($companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate']);
+        }
+
+        $this->mainAddress = $companyDetails['report']['contactInformation']['mainAddress'] ?? [];
+        $this->otherAddresses = $companyDetails['report']['contactInformation']['otherAddresses'] ?? [];
 
         $this->currentDirectors = array_map(function ($director) {
             return new Company\Director($this, $director, true);
-        }, $companyDetails['report']['directors']['currentDirectors']);
+        }, $companyDetails['report']['directors']['currentDirectors'] ?? []);
 
         $this->previousDirectors = array_map(function ($director) {
             return new Company\Director($this, $director, false);
@@ -64,11 +68,11 @@ class Company
             return $history;
         }, $companyDetails['report']['additionalInformation']['companyHistory'] ?? []);
 
-        $this->commentaries = $companyDetails['report']['additionalInformation']['commentaries'];
-        $this->creditScore = new Company\CreditScore($this, $companyDetails['report']['creditScore']);
-        $this->mortgageSummary = $companyDetails['report']['additionalInformation']['mortgageSummary'];
+        $this->commentaries = $companyDetails['report']['additionalInformation']['commentaries'] ?? [];
+        $this->creditScore = new Company\CreditScore($this, $companyDetails['report']['creditScore'] ?? []);
+        $this->mortgageSummary = $companyDetails['report']['additionalInformation']['mortgageSummary'] ?? [];
         $this->mortgages = $companyDetails['report']['additionalInformation']['mortgageDetails'] ?? null;
-        $this->negativeInfo = $companyDetails['report']['negativeInformation'];
+        $this->negativeInfo = $companyDetails['report']['negativeInformation'] ?? [];
         $this->rawDetails = $companyDetails;
     }
 

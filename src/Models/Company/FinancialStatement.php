@@ -22,6 +22,7 @@ class FinancialStatement
     {
         $this->company = $company;
         $this->statementDetails = $statementDetails;
+        $this->statementDetails['yearEndDate'] = new \DateTime($this->statementDetails['yearEndDate']);
     }
 
     /**
@@ -83,7 +84,7 @@ class FinancialStatement
      */
     public function getYearEndDate() : \DateTime
     {
-        return new \DateTime($this->statementDetails['yearEndDate']);
+        return $this->statementDetails['yearEndDate'];
     }
 
     /**
