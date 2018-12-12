@@ -1,0 +1,25 @@
+{
+    "name": "synergitech/creditsafe-connect",
+    "type": "library",
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^6.3",
+        "lcobucci/jwt": "^3.2.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sean Lane",
+            "email": "sean@synergitech.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "SynergiTech\\Creditsafe\\" : "src/",
+          "SynergiTech\\Creditsafe\\Tests\\" : "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    }
+}
