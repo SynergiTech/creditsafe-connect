@@ -24,6 +24,9 @@ class Company
     private $currentDirectors;
     private $previousDirectors;
     private $creditScore;
+    private $shareholders;
+    private $issuedShareCapital;
+    private $numberOfSharesIssued;
     private $mortgageSummary;
     private $mortgages;
     private $negativeInfo;
@@ -70,6 +73,11 @@ class Company
 
         $this->commentaries = $companyDetails['report']['additionalInformation']['commentaries'] ?? [];
         $this->creditScore = new Company\CreditScore($this, $companyDetails['report']['creditScore'] ?? []);
+        $this->shareholders = array_map(function ($shareholder) {
+            return new Company\Shareholder($this, $shareholder);
+        }, $companyDetails['report']['shareCapitalStructure']['shareHolders'] ?? []);
+        $this->numberOfSharesIssued = $companyDetails['report']['shareCapitalStructure']['numberOfSharesIssued'] ?? [];
+        $this->issuedShareCapital = $companyDetails['report']['shareCapitalStructure']['issuedShareCapital'] ?? [];
         $this->mortgageSummary = $companyDetails['report']['additionalInformation']['mortgageSummary'] ?? [];
         $this->mortgages = $companyDetails['report']['additionalInformation']['mortgageDetails'] ?? null;
         $this->negativeInfo = $companyDetails['report']['negativeInformation'] ?? [];
@@ -186,6 +194,15 @@ class Company
 
     /**
      *
+     * @return array Returns a array of Shareholders for the company
+     */
+    public function getShareHolders() : array
+    {
+        return $this->shareholders;
+    }
+
+    /**
+     *
      * @return array Returns the commentaries of the company
      */
     public function getCommentaries() : array
@@ -236,5 +253,23 @@ class Company
     public function getFinancialStatements() : array
     {
         return $this->financialStatements;
+    }
+
+    /**
+     *
+     * @return array Returns an array which ocontains the currency and value of shares
+     */
+    public function getIssuedShareCapital() : array
+    {
+        return $this->issuedShareCapital;
+    }
+    
+    /**
+     *
+     * @return string  Returns the number of shares issued
+     */
+    public function getNumberOfSharesIssued() : string
+    {
+        return $this->numberOfSharesIssued;
     }
 }
