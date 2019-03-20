@@ -78,9 +78,13 @@ class Director
      *
      * @return DateTime Returns the Date Of Birth of  the Director
      */
-    public function getDateOfBirth() : \DateTime
+    public function getDateOfBirth() : ?\DateTime
     {
-        return $this->directorDetails['dateOfBirth'];
+        if (isset($this->directorDetails['dateOfBirth'])) {
+            return $this->directorDetails['dateOfBirth'];
+        }
+
+        return null;
     }
 
     /**
