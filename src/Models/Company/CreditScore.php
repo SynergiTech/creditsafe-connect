@@ -34,7 +34,7 @@ class CreditScore
 
     /**
      *
-     * @return array Returns the currentCreditRating data  as an array
+     * @return array | null Returns the currentCreditRating data  as an array
      */
     public function getCurrentCreditRating() : ?array
     {
@@ -43,7 +43,7 @@ class CreditScore
 
     /**
      *
-     * @return array Returns the currentContractLimit data  as an array
+     * @return array | null Returns the currentContractLimit data  as an array
      */
     public function getCurrentContractLimit() : ?array
     {
@@ -52,7 +52,7 @@ class CreditScore
 
     /**
      *
-     * @return array Returns the previousCreditRating data  as an array
+     * @return array | null Returns the previousCreditRating data  as an array
      */
     public function getPreviousCreditRating() : ?array
     {
@@ -61,7 +61,7 @@ class CreditScore
 
     /**
      *
-     * @return  \DateTime Returns the LastestRatingChangeDate in DateTime
+     * @return  \DateTime | null Returns the LastestRatingChangeDate in DateTime
      */
     public function getLatestRatingChangeDate() : ?\DateTime
     {

@@ -99,7 +99,7 @@ class Company
      */
     public function getBusinessName() : string
     {
-        return $this->businessName;
+        return $this->businessName ?? '';
     }
 
     /**
@@ -108,7 +108,7 @@ class Company
      */
     public function getRegisteredCompanyName() : string
     {
-        return $this->registeredCompanyName;
+        return $this->registeredCompanyName ?? '';
     }
 
     /**
@@ -117,7 +117,7 @@ class Company
      */
     public function getCompanyRegistrationNumber() : string
     {
-        return $this->companyRegistrationNumber;
+        return $this->companyRegistrationNumber ?? '';
     }
 
     /**
@@ -126,7 +126,7 @@ class Company
      */
     public function getCountry() : string
     {
-        return $this->country;
+        return $this->country ?? '';
     }
 
     /**
@@ -144,7 +144,7 @@ class Company
      */
     public function getMainAddress() : array
     {
-        return $this->mainAddress;
+        return $this->mainAddress ?? [];
     }
 
     /**
@@ -153,12 +153,12 @@ class Company
      */
     public function getOtherAddresses() : array
     {
-        return $this->otherAddresses;
+        return $this->otherAddresses ?? [];
     }
 
     /**
      *
-     * @return array Return an array of current directors
+     * @return array | null Return an array of current directors
      */
     public function getCurrentDirectors() : ?array
     {
@@ -171,7 +171,7 @@ class Company
      */
     public function getPreviousDirectors() : array
     {
-        return $this->previousDirectors;
+        return $this->previousDirectors ?? [];
     }
 
     /**
@@ -180,7 +180,7 @@ class Company
      */
     public function getRawDetails() : array
     {
-        return $this->rawDetails;
+        return $this->rawDetails ?? [];
     }
 
     /**
@@ -198,7 +198,7 @@ class Company
      */
     public function getShareHolders() : array
     {
-        return $this->shareholders;
+        return $this->shareholders ?? [];
     }
 
     /**
@@ -207,7 +207,7 @@ class Company
      */
     public function getCommentaries() : array
     {
-        return $this->commentaries;
+        return $this->commentaries ?? [];
     }
 
     /**
@@ -216,7 +216,7 @@ class Company
      */
     public function getHistory() : array
     {
-        return $this->history;
+        return $this->history ?? [];
     }
 
     /**
@@ -225,7 +225,7 @@ class Company
      */
     public function getMortgageSummary() : array
     {
-        return $this->mortgageSummary;
+        return $this->mortgageSummary ?? [];
     }
 
     /**
@@ -239,11 +239,11 @@ class Company
 
     /**
      *
-     * @return array Get Negative Information
+     * @return array | null Get Negative Information
      */
     public function getNegativeInformation() : array
     {
-        return $this->negativeInfo;
+        return $this->negativeInfo ?? [];
     }
 
     /**
@@ -252,7 +252,7 @@ class Company
      */
     public function getFinancialStatements() : array
     {
-        return $this->financialStatements;
+        return $this->financialStatements ?? [];
     }
 
     /**
@@ -261,15 +261,15 @@ class Company
      */
     public function getIssuedShareCapital() : array
     {
-        return $this->issuedShareCapital;
+        return $this->issuedShareCapital ?? [];
     }
-    
+
     /**
      *
      * @return string  Returns the number of shares issued
      */
     public function getNumberOfSharesIssued() : string
     {
-        return $this->numberOfSharesIssued;
+        return $this->numberOfSharesIssued ?? '';
     }
 }
