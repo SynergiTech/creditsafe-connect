@@ -33,7 +33,7 @@ class Shareholder
      */
     public function getShareHolderName() : string
     {
-        return $this->shareholderDetails['name'];
+        return $this->shareholderDetails['name'] ?? '';
     }
 
     /**
@@ -42,7 +42,7 @@ class Shareholder
      */
     public function getshareholderType() : string
     {
-        return $this->shareholderDetails['shareholderType'];
+        return $this->shareholderDetails['shareholderType'] ?? '';
     }
 
     /**
@@ -51,7 +51,7 @@ class Shareholder
      */
     public function getShareHolderPercentage() : string
     {
-        return $this->shareholderDetails['percentSharesHeld'];
+        return $this->shareholderDetails['percentSharesHeld'] ?? '';
     }
 
     /**
@@ -60,7 +60,7 @@ class Shareholder
      */
     public function getNumOfSharesOwned() : string
     {
-        return $this->shareholderDetails['numberOfSharesOwned'];
+        return $this->shareholderDetails['numberOfSharesOwned'] ?? '' ;
     }
 
     /**
@@ -69,6 +69,6 @@ class Shareholder
      */
     public function getShareType() : string
     {
-        return $this->shareholderDetails['shareType'];
+        return $this->shareholderDetails['shareType'] ?? '';
     }
 }

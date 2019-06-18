@@ -31,7 +31,7 @@ class FinancialStatement
      */
     public function getProfitAndLoss() : array
     {
-        return $this->statementDetails['profitAndLoss'];
+        return $this->statementDetails['profitAndLoss'] ?? [];
     }
 
     /**
@@ -40,7 +40,7 @@ class FinancialStatement
      */
     public function getBalanceSheet() : array
     {
-        return $this->statementDetails['balanceSheet'];
+        return $this->statementDetails['balanceSheet'] ?? [];
     }
 
     /**
@@ -48,23 +48,23 @@ class FinancialStatement
      */
     public function getContingentLiabilities() : string
     {
-        return $this->statementDetails['otherFinancials']['contingentLiabilities'];
+        return $this->statementDetails['otherFinancials']['contingentLiabilities'] ?? '';
     }
 
     /**
      *
-     * @return float Return workingCapital
+     * @return float | null Return workingCapital
      */
-    public function getWorkingCapital() : float
+    public function getWorkingCapital() : ?float
     {
         return $this->statementDetails['otherFinancials']['workingCapital'];
     }
 
     /**
      *
-     * @return float Return net worth
+     * @return float | null Return net worth
      */
-    public function getNetWorth() : float
+    public function getNetWorth() : ?float
     {
         return $this->statementDetails['otherFinancials']['netWorth'];
     }
@@ -75,23 +75,23 @@ class FinancialStatement
      */
     public function getRatios() : array
     {
-        return $this->statementDetails['ratios'];
+        return $this->statementDetails['ratios'] ?? [];
     }
 
     /**
      *
-     * @return \DateTime Get the Financial Year End Date
+     * @return \DateTime | null Get the Financial Year End Date
      */
-    public function getYearEndDate() : \DateTime
+    public function getYearEndDate() : ?\DateTime
     {
         return $this->statementDetails['yearEndDate'];
     }
 
     /**
      *
-     * @return int Gets the number of accountable weeks
+     * @return int | null Gets the number of accountable weeks
      */
-    public function getNumberOfWeeks() : int
+    public function getNumberOfWeeks() : ?int
     {
         return $this->statementDetails['numberOfWeeks'];
     }
@@ -102,7 +102,7 @@ class FinancialStatement
      */
     public function getCurrency() : string
     {
-        return $this->statementDetails['currency'];
+        return $this->statementDetails['currency'] ?? [];
     }
 
     /**
@@ -120,6 +120,6 @@ class FinancialStatement
      */
     public function getType() : string
     {
-        return $this->statementDetails['type'];
+        return $this->statementDetails['type'] ?? [];
     }
 }

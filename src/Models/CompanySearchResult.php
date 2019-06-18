@@ -53,7 +53,7 @@ class CompanySearchResult
      */
     public function getCountry() : string
     {
-        return $this->country;
+        return $this->country ?? '';
     }
 
     /**
@@ -62,7 +62,7 @@ class CompanySearchResult
      */
     public function getRefNo() : string
     {
-        return $this->regNo;
+        return $this->regNo ?? '';
     }
 
     /**
@@ -71,7 +71,7 @@ class CompanySearchResult
      */
     public function getSafeNo() : string
     {
-        return $this->safeNo;
+        return $this->safeNo ?? '';
     }
 
     /**
@@ -80,7 +80,7 @@ class CompanySearchResult
      */
     public function getName() : string
     {
-        return $this->name;
+        return $this->name ?? '';
     }
 
     /**
@@ -89,7 +89,7 @@ class CompanySearchResult
      */
     public function getAddress() : array
     {
-        return $this->address;
+        return $this->address ?? [];
     }
 
     /**
@@ -98,7 +98,7 @@ class CompanySearchResult
      */
     public function getStatus() : string
     {
-        return $this->status;
+        return $this->status ?? '';
     }
 
     /**
@@ -107,7 +107,7 @@ class CompanySearchResult
      */
     public function getType() : string
     {
-        return $this->type;
+        return $this->type ?? '';
     }
 
     /**

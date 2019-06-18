@@ -62,7 +62,7 @@ class Director
      */
     public function getID() : string
     {
-        return $this->directorDetails['id'];
+        return $this->directorDetails['id'] ?? '';
     }
 
     /**
@@ -71,12 +71,12 @@ class Director
      */
     public function getGender() : string
     {
-        return $this->directorDetails['gender'];
+        return $this->directorDetails['gender'] ?? '';
     }
 
     /**
      *
-     * @return DateTime Returns the Date Of Birth of  the Director
+     * @return DateTime | null Returns the Date Of Birth of  the Director
      */
     public function getDateOfBirth() : ?\DateTime
     {
@@ -93,7 +93,7 @@ class Director
      */
     public function getPositions() : array
     {
-        return $this->directorDetails['positions'];
+        return $this->directorDetails['positions'] ?? [];
     }
 
     /**
@@ -102,7 +102,7 @@ class Director
      */
     public function getName() : string
     {
-        return $this->directorDetails['name'];
+        return $this->directorDetails['name'] ?? '';
     }
 
     /**
@@ -111,6 +111,6 @@ class Director
      */
     public function getAddress() : array
     {
-        return $this->directorDetails['address'];
+        return $this->directorDetails['address'] ?? [];
     }
 }
