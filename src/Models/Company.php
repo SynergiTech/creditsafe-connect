@@ -46,9 +46,9 @@ class Company
         $this->registeredCompanyName = $companyDetails['report']['companyIdentification']['basicInformation']['registeredCompanyName'] ?? null;
         $this->companyRegistrationNumber = $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationNumber'] ?? null;
         $this->country = $companyDetails['report']['companyIdentification']['basicInformation']['country'] ?? null;
-        $this->companyRegistrationDate = null;
+
         if (isset($companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'])) {
-            $this->companyRegistrationDate = new \DateTime($companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate']);
+            $this->companyRegistrationDate = $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'];
         }
 
         $this->mainAddress = $companyDetails['report']['contactInformation']['mainAddress'] ?? [];
@@ -76,7 +76,8 @@ class Company
         $this->shareholders = array_map(function ($shareholder) {
             return new Company\Shareholder($this, $shareholder);
         }, $companyDetails['report']['shareCapitalStructure']['shareHolders'] ?? []);
-        $this->numberOfSharesIssued = $companyDetails['report']['shareCapitalStructure']['numberOfSharesIssued'] ?? [];
+
+        $this->numberOfSharesIssued = $companyDetails['report']['shareCapitalStructure']['numberOfSharesIssued'] ?? null;
         $this->issuedShareCapital = $companyDetails['report']['shareCapitalStructure']['issuedShareCapital'] ?? [];
         $this->mortgageSummary = $companyDetails['report']['additionalInformation']['mortgageSummary'] ?? [];
         $this->mortgages = $companyDetails['report']['additionalInformation']['mortgageDetails'] ?? null;
@@ -131,11 +132,11 @@ class Company
 
     /**
      *
-     * @return DateTime Return Company Registration Date
+     * @return \DateTime Return Company Registration Date
      */
-    public function getCompanyRegistrationDate() : \DateTime
+    public function getCompanyRegistrationDate() : ?\DateTime
     {
-        return new \DateTime($this->companyRegistrationDate);
+        return $this->companyRegistrationDate ? new \DateTime($this->companyRegistrationDate) : null;
     }
 
     /**
@@ -268,8 +269,8 @@ class Company
      *
      * @return string  Returns the number of shares issued
      */
-    public function getNumberOfSharesIssued() : string
+    public function getNumberOfSharesIssued() : ?int
     {
-        return $this->numberOfSharesIssued ?? '';
+        return $this->numberOfSharesIssued;
     }
 }
