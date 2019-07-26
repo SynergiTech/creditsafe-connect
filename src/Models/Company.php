@@ -47,7 +47,7 @@ class Company
         $this->companyRegistrationNumber = $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationNumber'] ?? null;
         $this->country = $companyDetails['report']['companyIdentification']['basicInformation']['country'] ?? null;
 
-        if ($companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'] ?? null) {
+        if (isset($companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'])) {
             $this->companyRegistrationDate = $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'];
         }
 
@@ -133,7 +133,6 @@ class Company
     /**
      *
      * @return \DateTime Return Company Registration Date
-     * @throws \Exception
      */
     public function getCompanyRegistrationDate() : ?\DateTime
     {
