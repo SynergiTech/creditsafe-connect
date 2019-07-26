@@ -76,7 +76,8 @@ class Company
         $this->shareholders = array_map(function ($shareholder) {
             return new Company\Shareholder($this, $shareholder);
         }, $companyDetails['report']['shareCapitalStructure']['shareHolders'] ?? []);
-        $this->numberOfSharesIssued = $companyDetails['report']['shareCapitalStructure']['numberOfSharesIssued'] ?? '';
+
+        $this->numberOfSharesIssued = $companyDetails['report']['shareCapitalStructure']['numberOfSharesIssued'] ?? null;
         $this->issuedShareCapital = $companyDetails['report']['shareCapitalStructure']['issuedShareCapital'] ?? [];
         $this->mortgageSummary = $companyDetails['report']['additionalInformation']['mortgageSummary'] ?? [];
         $this->mortgages = $companyDetails['report']['additionalInformation']['mortgageDetails'] ?? null;
@@ -269,8 +270,8 @@ class Company
      *
      * @return string  Returns the number of shares issued
      */
-    public function getNumberOfSharesIssued() : string
+    public function getNumberOfSharesIssued() : ?int
     {
-        return $this->numberOfSharesIssued ?? '';
+        return $this->numberOfSharesIssued;
     }
 }
