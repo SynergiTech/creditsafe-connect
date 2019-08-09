@@ -40,7 +40,7 @@ class CompanyService
      * @param string $reportLang
      * @return Company Returns the results of the  get endpoint
      */
-    public function get(string $id, $reportLang = 'en') : Company
+    public function get(string $id, string $reportLang = 'en') : Company
     {
         return new Company($this->client, $this->client->get('companies/'.$id, ['language' => $reportLang]));
     }
