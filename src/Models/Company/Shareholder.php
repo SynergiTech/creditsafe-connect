@@ -9,8 +9,8 @@ use SynergiTech\Creditsafe\Models\Company;
  */
 class Shareholder
 {
-    private $company;
-    private $shareholderDetails;
+    protected $company;
+    protected $shareholderDetails;
     /**
      * [__construct description]
      * @param Company $company            Used to store the client in the Company Class

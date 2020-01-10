@@ -10,28 +10,28 @@ use SynergiTech\Creditsafe\Models\Company\CreditScore;
 class Company
 {
 
-    private $client;
-    private $companyID;
-    private $businessName;
-    private $registeredCompanyName;
-    private $companyRegistrationNumber;
-    private $country;
-    private $companyRegistrationDate;
-    private $mainAddress;
-    private $otherAddresses;
-    private $commentaries;
-    private $history;
-    private $currentDirectors;
-    private $previousDirectors;
-    private $creditScore;
-    private $shareholders;
-    private $issuedShareCapital;
-    private $numberOfSharesIssued;
-    private $mortgageSummary;
-    private $mortgages;
-    private $negativeInfo;
-    private $rawDetails;
-    private $financialStatements;
+    protected $client;
+    protected $companyID;
+    protected $businessName;
+    protected $registeredCompanyName;
+    protected $companyRegistrationNumber;
+    protected $country;
+    protected $companyRegistrationDate;
+    protected $mainAddress;
+    protected $otherAddresses;
+    protected $commentaries;
+    protected $history;
+    protected $currentDirectors;
+    protected $previousDirectors;
+    protected $creditScore;
+    protected $shareholders;
+    protected $issuedShareCapital;
+    protected $numberOfSharesIssued;
+    protected $mortgageSummary;
+    protected $mortgages;
+    protected $negativeInfo;
+    protected $rawDetails;
+    protected $financialStatements;
 
     /**
      * Function constructs the Company Class

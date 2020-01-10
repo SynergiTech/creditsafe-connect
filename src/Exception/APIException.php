@@ -7,7 +7,7 @@ namespace SynergiTech\Creditsafe\Exception;
  */
 class APIException extends \RuntimeException
 {
-    private $correlationID = null;
+    protected $correlationID = null;
 
     /**
      *  Sets the CorrelationID

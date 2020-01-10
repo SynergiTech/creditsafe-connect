@@ -9,9 +9,9 @@ use SynergiTech\Creditsafe\Models\Company;
  */
 class Director
 {
-    private $company;
-    private $directorDetails;
-    private $current;
+    protected $company;
+    protected $directorDetails;
+    protected $current;
 
     /**
      * Function constructs the Director Class

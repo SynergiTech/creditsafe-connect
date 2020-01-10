@@ -7,16 +7,16 @@ namespace SynergiTech\Creditsafe\Models;
  */
 class CompanySearchResult
 {
-    private $client;
-    private $id;
-    private $country;
-    private $regNo;
-    private $safeNo;
-    private $name;
-    private $address;
-    private $status;
-    private $type;
-    private $dateOfLatestChange;
+    protected $client;
+    protected $id;
+    protected $country;
+    protected $regNo;
+    protected $safeNo;
+    protected $name;
+    protected $address;
+    protected $status;
+    protected $type;
+    protected $dateOfLatestChange;
 
     /**
      * Function constructs the CompanySearchResult Class

@@ -11,8 +11,8 @@ use \SynergiTech\Creditsafe\Models\Company;
  */
 class CompanyService
 {
-    private $client;
-    private $id;
+    protected $client;
+    protected $id;
 
     /**
      * This constructor builds the CompanyServices Class
