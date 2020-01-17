@@ -8,15 +8,69 @@ namespace SynergiTech\Creditsafe\Models;
 class CompanySearchResult
 {
     protected $client;
+
+    /**
+     * @var string
+     */
     protected $id;
+
+    /**
+     * @var string|null
+     */
     protected $country;
+
+    /**
+     * @var string|null
+     */
     protected $regNo;
+
+    /**
+     * @var string|null
+     */
     protected $safeNo;
+
+    /**
+     * @var array|null
+     */
+    protected $vatNo;
+
+    /**
+     * @var string|null
+     */
     protected $name;
+
+    /**
+     * @var array|null
+     */
     protected $address;
+
+    /**
+     * @var string|null
+     */
     protected $status;
+
+    /**
+     * @var mixed|null
+     */
     protected $type;
+
+    /**
+     * @var string|null
+     */
+    protected $officeType;
+
+    /** @var array|null  */
+    protected $tradingNames;
+
+    /**
+     * @var string|null
+     */
     protected $dateOfLatestChange;
+
+    /**
+     * @var string|null
+     */
+    protected $activityCode;
 
     /**
      * Function constructs the CompanySearchResult Class
@@ -34,8 +88,12 @@ class CompanySearchResult
         $this->name = $companyDetails['name'] ?? null;
         $this->address = $companyDetails['address'] ?? null;
         $this->status = $companyDetails['status'] ?? null;
-        $this->type = $companyDetails['type'] ?? null;
-        $this->dateOfLatestChange = $companyDetails['dateOfLatestChange'] ?? null;
+        $this->type = isset($companyDetails['type']) ? $companyDetails['type'] : null;
+        $this->officeType = isset($companyDetails['officeType']) ? $companyDetails['officeType'] : null;
+        $this->vatNo = isset($companyDetails['vatNo']) ? $companyDetails['vatNo'] : [];
+        $this->tradingNames = isset($companyDetails['tradingNames']) ? $companyDetails['tradingNames'] : [];
+        $this->dateOfLatestChange = isset($companyDetails['dateOfLatestChange']) ?
+                $companyDetails['dateOfLatestChange'] : null;
     }
 
     /**
@@ -108,6 +166,30 @@ class CompanySearchResult
     public function getType() : string
     {
         return $this->type ?? '';
+    }
+
+    /**
+     * @return string Get OfficeType
+     */
+    public function getOfficeType() : string
+    {
+        return $this->officeType ?? '';
+    }
+
+    /**
+     * @return array
+     */
+    public function getTradingNames() : array
+    {
+        return $this->tradingNames ?? [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getVatNo() : array
+    {
+        return $this->vatNo ?? [];
     }
 
     /**
