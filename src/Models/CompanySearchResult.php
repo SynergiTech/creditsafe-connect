@@ -59,7 +59,9 @@ class CompanySearchResult
      */
     protected $officeType;
 
-    /** @var array|null  */
+    /**
+     * @var array|null
+     */
     protected $tradingNames;
 
     /**
