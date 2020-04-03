@@ -34,10 +34,10 @@ class Client
 
         if (isset($this->config['http_client'])) {
             $this->http_client = $this->config['http_client'];
+            unset($this->config['http_client']);
         } else {
             $this->http_client = new \GuzzleHttp\Client([
                 'base_uri' => $this->getBaseURL(),
-                'curl' => $this->getCurlOptions()
             ]);
         }
     }
@@ -228,19 +228,6 @@ class Client
     public function getBaseURL() : string
     {
         return $this->getApiURL().$this->getApiVersion().'/';
-    }
-
-    /**
-     * returns an array with curl options
-     * For example:
-     *      [CURLOPT_SSL_VERIFYPEER => FALSE]  // ignores SSL certificate issues
-     * @see https://www.php.net/manual/en/function.curl-setopt.php
-     * @param none
-     * @return array
-     */
-    public function getCurlOptions()
-    {
-        return [];
     }
 
     /**
