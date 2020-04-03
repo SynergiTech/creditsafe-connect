@@ -10,7 +10,7 @@ use SynergiTech\Creditsafe\Client;
 
 class CountryService
 {
-    private $client;
+    protected $client;
 
     /**
      * This Constructor builds the Countries Class

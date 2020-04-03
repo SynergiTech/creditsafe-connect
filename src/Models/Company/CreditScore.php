@@ -9,11 +9,11 @@ use SynergiTech\Creditsafe\Models\Company;
  */
 class CreditScore
 {
-    private $company;
-    private $currentCreditRating;
-    private $currentContractLimit;
-    private $previousCreditRating;
-    private $latestRatingChangeDate;
+    protected $company;
+    protected $currentCreditRating;
+    protected $currentContractLimit;
+    protected $previousCreditRating;
+    protected $latestRatingChangeDate;
 
     /**
      * Function constructs the CreditScore Class

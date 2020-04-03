@@ -11,9 +11,18 @@ use GuzzleHttp\Psr7;
  */
 class Client
 {
-    private $http_client;
-    private $token;
-    private $config;
+
+    protected $http_client;
+
+    /**
+     * @var string
+     */
+    protected $token;
+
+    /**
+     * @var array
+     */
+    protected $config;
 
     /**
      * construct function that builds the client class
@@ -25,6 +34,7 @@ class Client
 
         if (isset($this->config['http_client'])) {
             $this->http_client = $this->config['http_client'];
+            unset($this->config['http_client']);
         } else {
             $this->http_client = new \GuzzleHttp\Client([
                 'base_uri' => $this->getBaseURL(),
@@ -72,6 +82,9 @@ class Client
         $this->token = (new Parser())->parse($token);
     }
 
+    /**
+     * @return Token
+     */
     public function getToken() : Token
     {
         return $this->token;
@@ -198,6 +211,9 @@ class Client
         return $this->countries;
     }
 
+    /**
+     * @return array
+     */
     public function getDefaultConfig() : array
     {
         return [
@@ -218,7 +234,7 @@ class Client
      * Function gets the Api url
      * @return string Returns a string containing the api url
      */
-    private function getApiURL() : string
+    protected function getApiURL() : string
     {
         return $this->config['apiURI'];
     }
@@ -227,7 +243,7 @@ class Client
      * Function gets the Api Version
      * @return string Returns a string containing the Api Version
      */
-    private function getApiVersion() : string
+    protected function getApiVersion() : string
     {
         return 'v1';
     }

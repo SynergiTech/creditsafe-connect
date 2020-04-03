@@ -10,8 +10,8 @@ use SynergiTech\Creditsafe\Models\Company;
 class FinancialStatement
 {
 
-    private $company;
-    private $statementDetails;
+    protected $company;
+    protected $statementDetails;
 
     /**
      * Function constructs the FinancialStatement Class

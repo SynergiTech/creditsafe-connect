@@ -7,14 +7,14 @@ namespace SynergiTech\Creditsafe;
 */
 class ListResult implements \Iterator
 {
-    private $client;
-    private $targetClass;
-    private $endpoint;
-    private $params;
-    private $pageSize = 10;
-    private $currentPagePos = null;
-    private $currentRecordPos = null;
-    private $currentRecordSet = [];
+    protected $client;
+    protected $targetClass;
+    protected $endpoint;
+    protected $params;
+    protected $pageSize = 10;
+    protected $currentPagePos = null;
+    protected $currentRecordPos = null;
+    protected $currentRecordSet = [];
 
     /**
      * This constructor is used to build the ListResult

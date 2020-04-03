@@ -9,8 +9,8 @@ use SynergiTech\Creditsafe\Client;
  */
 class CompanyEventService
 {
-    private $client;
-    private $id;
+    protected $client;
+    protected $id;
 
     /**
      * This Constructor builds the CompaniesEvents Class
