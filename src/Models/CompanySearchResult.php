@@ -90,12 +90,11 @@ class CompanySearchResult
         $this->name = $companyDetails['name'] ?? null;
         $this->address = $companyDetails['address'] ?? null;
         $this->status = $companyDetails['status'] ?? null;
-        $this->type = isset($companyDetails['type']) ? $companyDetails['type'] : null;
-        $this->officeType = isset($companyDetails['officeType']) ? $companyDetails['officeType'] : null;
-        $this->vatNo = isset($companyDetails['vatNo']) ? $companyDetails['vatNo'] : [];
-        $this->tradingNames = isset($companyDetails['tradingNames']) ? $companyDetails['tradingNames'] : [];
-        $this->dateOfLatestChange = isset($companyDetails['dateOfLatestChange']) ?
-                $companyDetails['dateOfLatestChange'] : null;
+        $this->type = $companyDetails['type'] ?? null;
+        $this->officeType = $companyDetails['officeType'] ?? null;
+        $this->vatNo = $companyDetails['vatNo'] ?? [];
+        $this->tradingNames = $companyDetails['tradingNames'] ?? [];
+        $this->dateOfLatestChange = $companyDetails['dateOfLatestChange'] ?? null;
     }
 
     /**
