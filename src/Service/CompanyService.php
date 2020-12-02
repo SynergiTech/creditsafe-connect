@@ -34,15 +34,29 @@ class CompanyService
         return $list;
     }
 
+
     /**
      * This function is used to call the endpoint that gets the company report
      * @param string $id The ID of the given company that you want to get a report for
      * @param string $reportLang
+     * @param string|null $template
+     * @param string|null $customData
+     * @param string|null $callRef
      * @return Company Returns the results of the  get endpoint
      */
-    public function get(string $id, string $reportLang = 'en') : Company
+    public function get(
+        string $id,
+        string $reportLang = 'en',
+        string $template = null,
+        string $customData = null,
+        string $callRef = null
+    ) : Company
     {
-        return new Company($this->client, $this->client->get('companies/'.$id, ['language' => $reportLang]));
+        $params = ['language' => $reportLang];
+        if ($template)  { $params['template']   = $template; }
+        if ($customData){ $params['customData'] = $customData; }
+        if ($callRef)   { $params['callRef']    = $callRef; }
+        return new Company($this->client, $this->client->get('companies/'.$id, $params));
     }
 
     /**
