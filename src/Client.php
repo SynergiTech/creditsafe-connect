@@ -25,6 +25,26 @@ class Client
     protected $config;
 
     /**
+     * @var Service\CountryService
+     */
+    protected $countries;
+
+    /**
+     * @var Service\CompanyService
+     */
+    protected $company;
+
+    /**
+     * @var Service\CompanyEventService
+     */
+    protected $monitor;
+
+    /**
+     * @var Service\ReportCustomData
+     */
+    protected $reportCustomData;
+
+    /**
      * construct function that builds the client class
      * @param array $config creditsafe configuration
      */
@@ -181,7 +201,7 @@ class Client
      */
     public function monitoring() : Service\CompanyEventService
     {
-        if (!isset($this->monitor)) {
+        if (is_null($this->monitor)) {
             $this->monitor = new Service\CompanyEventService($this);
         }
         return $this->monitor;
@@ -193,7 +213,7 @@ class Client
      */
     public function companies() : Service\CompanyService
     {
-        if (!isset($this->company)) {
+        if (is_null($this->company)) {
             $this->company = new Service\CompanyService($this);
         }
         return $this->company;
@@ -205,10 +225,18 @@ class Client
      */
     public function countries() : Service\CountryService
     {
-        if (!isset($this->countries)) {
+        if (is_null($this->countries)) {
             $this->countries = new Service\CountryService($this);
         }
         return $this->countries;
+    }
+
+    public function reportCustomData() : Service\ReportCustomData
+    {
+        if (is_null($this->reportCustomData)) {
+            $this->reportCustomData = new Service\ReportCustomData($this);
+        }
+        return $this->reportCustomData;
     }
 
     /**
