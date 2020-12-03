@@ -14,6 +14,7 @@ class CountryService
 
     /**
      * This Constructor builds the Countries Class
+     *
      * @param Client $client This variable stores the client in the Countries Class
      */
     public function __construct(Client $client)
@@ -23,6 +24,7 @@ class CountryService
 
     /**
      * This access function is called by the client to get the access countries endpoint
+     *
      * @return array  Returns the results of the endpoint in an array
      */
     public function access()

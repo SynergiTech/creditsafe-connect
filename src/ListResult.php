@@ -20,11 +20,13 @@ class ListResult implements \Iterator
 
     /**
      * This constructor is used to build the ListResult
-     * @param Client $client       Used to set the client in the ListResult Class
-     * @param string $targetClass  Used to set a dynamic class in the LisrResult Class
-     *  allowing for ListResult to be used on different classes
+     *
+     * @param Client $client      Used to set the client in the ListResult Class
+     * @param string $targetClass Used to set a dynamic class in the LisrResult Class
+     *                            allowing for ListResult to be used on different
+     *                            classes
      * @param string $endpoint    Used to set the endpoint for which the ListResult Class is using
-     * @param array $params      Used tp set the params for which the ListResult Class is using
+     * @param array  $params      Used tp set the params for which the ListResult Class is using
      */
     public function __construct(Client $client, string $targetClass, string $endpoint, array $params)
     {
@@ -37,7 +39,8 @@ class ListResult implements \Iterator
 
     /**
      * Set PageSize
-     * @param  int  $size Stores the PageSize
+     *
+     * @param  int $size Stores the PageSize
      * @return self
      */
     public function setPageSize(int $size) : self
@@ -49,6 +52,7 @@ class ListResult implements \Iterator
 
     /**
      * Get  Params
+     *
      * @return array Return Params
      */
     private function getParams() : array
@@ -62,7 +66,8 @@ class ListResult implements \Iterator
 
     /**
      * Get Page
-     * @param  int    $num  Passes the page number
+     *
+     * @param  int $num Passes the page number
      * @return array  Returns  the current Record Set
      */
     public function page(int $num) : array
@@ -82,6 +87,7 @@ class ListResult implements \Iterator
 
     /**
      * fetch Page
+     *
      * @return array Returns the results for a page
      */
     private function fetchPage() : array
@@ -97,7 +103,8 @@ class ListResult implements \Iterator
 
     /**
      *  Rewind  to the first page
-     * @return  void
+     *
+     * @return void
      */
     public function rewind() : void
     {
@@ -106,6 +113,7 @@ class ListResult implements \Iterator
 
     /**
      * Get the current page
+     *
      * @return array
      */
     public function current()
@@ -115,6 +123,7 @@ class ListResult implements \Iterator
 
     /**
      * Get the next page
+     *
      * @return void
      */
     public function next() : void
@@ -127,6 +136,7 @@ class ListResult implements \Iterator
 
     /**
      * Get the key of a position
+     *
      * @return int
      */
     public function key() : int
@@ -136,6 +146,7 @@ class ListResult implements \Iterator
 
     /**
      * Check if a position is valid
+     *
      * @return bool
      */
     public function valid() : bool

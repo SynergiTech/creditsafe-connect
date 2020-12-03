@@ -11,6 +11,7 @@ class APIException extends \RuntimeException
 
     /**
      *  Sets the CorrelationID
+     *
      * @param string $correlationID Contains the CorrelationID
      */
     public function setCorrelationID(string $correlationID) : void
@@ -20,6 +21,7 @@ class APIException extends \RuntimeException
 
     /**
      * Get CorrelationID
+     *
      * @return ?string Contains the CorrelationID
      */
     public function getCorrelationID() : ?string

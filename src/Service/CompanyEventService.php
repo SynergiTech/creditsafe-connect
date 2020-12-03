@@ -14,7 +14,8 @@ class CompanyEventService
 
     /**
      * This Constructor builds the CompaniesEvents Class
-     * @param array $client This variable stores the client in the CompaniesEvents Class
+     *
+     * @param Client $client This variable stores the client in the CompaniesEvents Class
      */
     public function __construct(Client $client)
     {
@@ -23,8 +24,9 @@ class CompanyEventService
 
     /**
      * This function gets the companies Events endpoint
+     *
      * @param  string $id     The ID of the company events we are searching for
-     * @param  array  $params  Params for the endpoint
+     * @param  array  $params Params for the endpoint
      * @return array  Returns the results of the endpoint
      */
     public function companyEvents(string $id, array $params) : array
