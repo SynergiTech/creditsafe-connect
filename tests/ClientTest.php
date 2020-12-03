@@ -3,19 +3,22 @@
 namespace SynergiTech\Creditsafe\Tests;
 
 use SynergiTech\Creditsafe\Client;
+use SynergiTech\Creditsafe\Tests\Base;
 
-class ClientTest extends \SynergiTech\Creditsafe\Tests\Base
+class ClientTest extends Base
 {
     /**
      * @dataProvider providerAuthorizationToken
      */
     public function testAuthorizationSuccess($guzzle)
     {
-        $client = new Client([
+        $client = new Client(
+            [
             'http_client' => $guzzle,
             'username' => '',
             'password' => '',
-        ]);
+            ]
+        );
         $client->authenticate();
 
         $this->assertNotNull($client->getToken());
@@ -24,19 +27,21 @@ class ClientTest extends \SynergiTech\Creditsafe\Tests\Base
 
     public function providerAuthorizationToken()
     {
-        return $this->dataToGuzzleMock(require 'data/authorization/valid_token.php');
+        return $this->dataToGuzzleMock(include 'data/authorization/valid_token.php');
     }
 
     /**
-    * @dataProvider providerInvalidAuthorizationToken
-    */
+     * @dataProvider providerInvalidAuthorizationToken
+     */
     public function testAuthorizationError($guzzle)
     {
-        $client = new Client([
+        $client = new Client(
+            [
             'http_client' => $guzzle,
             'username' => '',
             'password' => '',
-        ]);
+            ]
+        );
 
         $this->expectException(\SynergiTech\Creditsafe\Exception\Unauthorized::class);
         $this->expectExceptionCode(400);
@@ -47,6 +52,6 @@ class ClientTest extends \SynergiTech\Creditsafe\Tests\Base
 
     public function providerInvalidAuthorizationToken()
     {
-        return $this->dataToGuzzleMock(require 'data/authorization/invalid_token.php');
+        return $this->dataToGuzzleMock(include 'data/authorization/invalid_token.php');
     }
 }

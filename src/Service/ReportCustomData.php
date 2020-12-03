@@ -1,6 +1,5 @@
 <?php
 
-
 namespace SynergiTech\Creditsafe\Service;
 
 class ReportCustomData
@@ -13,9 +12,9 @@ class ReportCustomData
     }
 
     /**
-     * @param $countryId
+     * @param  $countryId
      * @return mixed
-     * @see https://raw.githubusercontent.com/creditsafe/connect-docs/master/cs_connectv1-12.json
+     * @see    https://raw.githubusercontent.com/creditsafe/connect-docs/master/cs_connectv1-12.json
      */
     public function get($countryId)
     {

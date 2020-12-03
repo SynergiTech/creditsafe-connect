@@ -15,10 +15,12 @@ class FinancialStatement
 
     /**
      * Function constructs the FinancialStatement Class
-     * @param Company $company          Used to store a company data in the Director Class
-     * @param array  $statementDetails  Financial Statement Data that needs to be stored in the FinancialStatement Class
+     *
+     * @param  Company $company          Used to store a company data in the Director Class
+     * @param  array   $statementDetails Financial Statement Data that needs to be stored in the FinancialStatement Class
+     * @throws \Exception
      */
-    public function __construct(Company $company, $statementDetails)
+    public function __construct(Company $company, array $statementDetails)
     {
         $this->company = $company;
         $this->statementDetails = $statementDetails;
@@ -102,7 +104,7 @@ class FinancialStatement
      */
     public function getCurrency() : string
     {
-        return $this->statementDetails['currency'] ?? [];
+        return $this->statementDetails['currency'] ?? '';
     }
 
     /**
@@ -120,6 +122,6 @@ class FinancialStatement
      */
     public function getType() : string
     {
-        return $this->statementDetails['type'] ?? [];
+        return $this->statementDetails['type'] ?? '';
     }
 }

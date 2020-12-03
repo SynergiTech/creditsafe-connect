@@ -2,6 +2,8 @@
 
 namespace SynergiTech\Creditsafe\Models;
 
+use SynergiTech\Creditsafe\Client;
+
 /**
  * This class contains all data relating to the CompanySearchResult
  */
@@ -76,11 +78,11 @@ class CompanySearchResult
 
     /**
      * Function constructs the CompanySearchResult Class
-     * @param  $client     Used to store the client in the CompanySearchResult Class
-     * @param array $companyDetails Company Data that needs to be stored in the CompanySearchResult Class
      *
+     * @param Client $client         Used to store the client in the CompanySearchResult Class
+     * @param array  $companyDetails Company Data that needs to be stored in the CompanySearchResult Class
      */
-    public function __construct($client, array $companyDetails)
+    public function __construct(Client $client, array $companyDetails)
     {
         $this->client = $client;
         $this->id = $companyDetails['id'];
@@ -108,6 +110,7 @@ class CompanySearchResult
 
     /**
      * Get Country
+     *
      * @return string Get Country
      */
     public function getCountry() : string
@@ -195,7 +198,8 @@ class CompanySearchResult
 
     /**
      *
-     * @return DateTime Get Date Of Latest Change
+     * @return \DateTime Get Date Of Latest Change
+     * @throws \Exception
      */
     public function getDateOfLatestChange() : \DateTime
     {
@@ -203,6 +207,7 @@ class CompanySearchResult
     }
     /**
      *  Gets the company from a company searches result
+     *
      * @return Company Returns the Company Report
      */
     public function get() : Company

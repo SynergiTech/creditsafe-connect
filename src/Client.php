@@ -15,7 +15,7 @@ class Client
     protected $http_client;
 
     /**
-     * @var string
+     * @var Token
      */
     protected $token;
 
@@ -46,6 +46,7 @@ class Client
 
     /**
      * construct function that builds the client class
+     *
      * @param array $config creditsafe configuration
      */
     public function __construct(array $config = [])
@@ -56,26 +57,31 @@ class Client
             $this->http_client = $this->config['http_client'];
             unset($this->config['http_client']);
         } else {
-            $this->http_client = new \GuzzleHttp\Client([
+            $this->http_client = new \GuzzleHttp\Client(
+                [
                 'base_uri' => $this->getBaseURL(),
-            ]);
+                ]
+            );
         }
     }
 
     /**
      * This function is used to authenticate a username and password
+     *
      * @return void
      * @throws Exception\Unauthorized if the provided authentication details are not valid
      */
     public function authenticate() : void
     {
         try {
-            $authenticate = $this->http_client->request('POST', 'authenticate', [
+            $authenticate = $this->http_client->request(
+                'POST', 'authenticate', [
                 'json'=> [
                     'username'=> $this->config['username'],
                     'password' => $this->config['password']
                 ]
-            ]);
+                ]
+            );
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $message = 'There was a problem authenticating with the Creditsafe API';
             if ($e->hasResponse()) {
@@ -93,8 +99,9 @@ class Client
 
     /**
      * set token
-     * @param string $token Token must be set to have access
-     *  to the api and is only valid for an hour
+     *
+     * @param  string $token Token must be set to have access
+     *                       to the api and is only valid for an hour
      * @return void
      */
     public function setToken(string $token) : void
@@ -112,6 +119,7 @@ class Client
 
     /**
      * Checks if token is valid
+     *
      * @return void
      */
     public function checkToken() : void
@@ -123,6 +131,7 @@ class Client
 
     /**
      * This request function handles all requests for the api
+     *
      * @param  string $type     Sets the type of HTTP Request e.g GET ,POST
      * @param  string $endpoint Sets the endpoint
      * @param  array  $params   Sets params for a endpoint
@@ -186,7 +195,8 @@ class Client
 
     /**
      *  A function that handles the creation of a GET  Request
-     * @param  string $endpoint  An endpoint used to create an request
+     *
+     * @param  string $endpoint An endpoint used to create an request
      * @param  array  $params   Sets params for a endpoint
      * @return array  Returns the results of the endpoint
      */
@@ -197,6 +207,7 @@ class Client
 
     /**
      * Get Company Events
+     *
      * @return Service\CompanyEventService Returns Company Events
      */
     public function monitoring() : Service\CompanyEventService
@@ -209,6 +220,7 @@ class Client
 
     /**
      *  Get company services
+     *
      * @return Service\CompanyService Returns Company Services
      */
     public function companies() : Service\CompanyService
@@ -221,6 +233,7 @@ class Client
 
     /**
      *  Get Countries
+     *
      * @return Service\CountryService  Returns the Countries
      */
     public function countries() : Service\CountryService
@@ -251,6 +264,7 @@ class Client
 
     /**
      *  Function gets the base url for the api by concatenating the API URL and the API version
+     *
      * @return string Returns a string containing the base url
      */
     public function getBaseURL() : string
@@ -260,6 +274,7 @@ class Client
 
     /**
      * Function gets the Api url
+     *
      * @return string Returns a string containing the api url
      */
     protected function getApiURL() : string
@@ -269,6 +284,7 @@ class Client
 
     /**
      * Function gets the Api Version
+     *
      * @return string Returns a string containing the Api Version
      */
     protected function getApiVersion() : string
