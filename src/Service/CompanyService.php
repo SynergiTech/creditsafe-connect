@@ -37,6 +37,7 @@ class CompanyService
         return $list;
     }
 
+
     /**
      * This function is used to call the endpoint that gets the company report
      *
