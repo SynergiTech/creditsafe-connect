@@ -1,4 +1,7 @@
 # Creditsafe API
+
+![Tests](https://github.com/SynergiTech/creditsafe-connect/workflows/Tests/badge.svg)
+
 ```
 composer require synergitech/creditsafe-connect
 ```

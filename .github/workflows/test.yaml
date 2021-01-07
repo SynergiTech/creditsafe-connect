@@ -1,0 +1,17 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.1, 7.2, 7.3, 7.4, 8]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: test against PHP ${{ matrix.php }}
+        run: docker build . --build-arg PHP_VERSION=${{ matrix.php }}
