@@ -96,7 +96,12 @@ class Client
      */
     public function checkToken() : void
     {
-        if ($this->token === null || $this->token->isExpired()) {
+        /**
+         * argument required as of lcobucci/jwt 3.4+
+         * https://github.com/lcobucci/jwt/commit/2cfa548b3f26176ab3e56a1ff3503b4d0db7ae7c
+         * https://github.com/lcobucci/jwt/issues/550#issuecomment-733557709
+         */
+        if ($this->token === null || $this->token->isExpired(new \DateTimeImmutable())) {
             $this->authenticate();
         }
     }
