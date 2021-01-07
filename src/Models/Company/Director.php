@@ -15,9 +15,11 @@ class Director
 
     /**
      * Function constructs the Director Class
-     * @param Company $company         Used to store a company data in the Director Class
-     * @param array $directorDetails   Directors Data that needs to be stored in the Director Class
-     * @param bool $current            Boolean used to indicate if the director is a current or previous director
+     *
+     * @param  Company $company         Used to store a company data in the Director Class
+     * @param  array   $directorDetails Directors Data that needs to be stored in the Director Class
+     * @param  bool    $current         Boolean used to indicate if the director is a current or previous director
+     * @throws \Exception
      */
     public function __construct(Company $company, array $directorDetails, bool $current)
     {
@@ -27,19 +29,22 @@ class Director
             $this->directorDetails['dateOfBirth'] =  new \DateTime($this->directorDetails['dateOfBirth']);
         }
 
-        $this->directorDetails['positions'] = array_map(function ($position) {
-            //Add if statement to check if position exists
-            if (isset($position['dateAppointed'])) {
-            //Can't assign datetime due to previousDirectors not having dateAppointed
-                $position['dateAppointed'] = new \DateTime($position['dateAppointed']);
-            }
-            return $position;
-        }, $this->directorDetails['positions']);
+        $this->directorDetails['positions'] = array_map(
+            function ($position) {
+                //Add if statement to check if position exists
+                if (isset($position['dateAppointed'])) {
+                    //Can't assign datetime due to previousDirectors not having dateAppointed
+                    $position['dateAppointed'] = new \DateTime($position['dateAppointed']);
+                }
+                return $position;
+            }, $this->directorDetails['positions']
+        );
         $this->current = $current;
     }
 
     /**
      * Checks if the director is a current director
+     *
      * @return boolean Returns if the current variable is true
      */
     public function isCurrent() : bool
@@ -49,6 +54,7 @@ class Director
 
     /**
      * Checks if the director is a previous director
+     *
      * @return boolean Return if the previous variable is not true
      */
     public function isPrevious() : bool

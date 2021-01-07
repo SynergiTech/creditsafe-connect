@@ -13,9 +13,9 @@ class Shareholder
     protected $shareholderDetails;
     /**
      * [__construct description]
+     *
      * @param Company $company            Used to store the client in the Company Class
      * @param array   $shareholderDetails Shareholder Data that needs to be stored in the Shareholder Class
-
      */
     public function __construct(Company $company, array $shareholderDetails)
     {
@@ -40,7 +40,7 @@ class Shareholder
      *
      * @return string Returns the type of shareholder
      */
-    public function getshareholderType() : string
+    public function getShareholderType() : string
     {
         return $this->shareholderDetails['shareholderType'] ?? '';
     }

@@ -17,8 +17,10 @@ class CreditScore
 
     /**
      * Function constructs the CreditScore Class
-     * @param Company $company     Used to store a company data in the creditScore Class
-     * @param array   $creditScore  CreditScore Data that needs to be stored in the creditScore Class
+     *
+     * @param  Company $company     Used to store a company data in the creditScore Class
+     * @param  array   $creditScore CreditScore Data that needs to be stored in the creditScore Class
+     * @throws \Exception
      */
     public function __construct(Company $company, array $creditScore)
     {
@@ -61,7 +63,7 @@ class CreditScore
 
     /**
      *
-     * @return  \DateTime | null Returns the LastestRatingChangeDate in DateTime
+     * @return \DateTime | null Returns the LastestRatingChangeDate in DateTime
      */
     public function getLatestRatingChangeDate() : ?\DateTime
     {

@@ -2,6 +2,7 @@
 
 namespace SynergiTech\Creditsafe\Models;
 
+use SynergiTech\Creditsafe\Client;
 use SynergiTech\Creditsafe\Models\Company\CreditScore;
 
 /**
@@ -35,10 +36,12 @@ class Company
 
     /**
      * Function constructs the Company Class
-     * @param array $client         Used to store the client in the Company Class
-     * @param array $companyDetails  Company Data that needs to be stored in the Company Class
+     *
+     * @param  Client $client         Used to store the client in the Company Class
+     * @param  array  $companyDetails Company Data that needs to be stored in the Company Class
+     * @throws \Exception
      */
-    public function __construct($client, array $companyDetails)
+    public function __construct(Client $client, array $companyDetails)
     {
         $this->client = $client;
         $this->companyID = $companyDetails['report']['companyId'];
@@ -54,28 +57,38 @@ class Company
         $this->mainAddress = $companyDetails['report']['contactInformation']['mainAddress'] ?? [];
         $this->otherAddresses = $companyDetails['report']['contactInformation']['otherAddresses'] ?? [];
 
-        $this->currentDirectors = array_map(function ($director) {
-            return new Company\Director($this, $director, true);
-        }, $companyDetails['report']['directors']['currentDirectors'] ?? []);
+        $this->currentDirectors = array_map(
+            function ($director) {
+                return new Company\Director($this, $director, true);
+            }, $companyDetails['report']['directors']['currentDirectors'] ?? []
+        );
 
-        $this->previousDirectors = array_map(function ($director) {
-            return new Company\Director($this, $director, false);
-        }, $companyDetails['report']['directors']['previousDirectors'] ?? []);
+        $this->previousDirectors = array_map(
+            function ($director) {
+                return new Company\Director($this, $director, false);
+            }, $companyDetails['report']['directors']['previousDirectors'] ?? []
+        );
 
-        $this->financialStatements = array_map(function ($statement) {
-            return new Company\FinancialStatement($this, $statement);
-        }, $companyDetails['report']['financialStatements'] ?? []);
+        $this->financialStatements = array_map(
+            function ($statement) {
+                return new Company\FinancialStatement($this, $statement);
+            }, $companyDetails['report']['financialStatements'] ?? []
+        );
 
-        $this->history = array_map(function ($history) {
-            $history['date'] = new \DateTime($history['date']);
-            return $history;
-        }, $companyDetails['report']['additionalInformation']['companyHistory'] ?? []);
+        $this->history = array_map(
+            function ($history) {
+                $history['date'] = new \DateTime($history['date']);
+                return $history;
+            }, $companyDetails['report']['additionalInformation']['companyHistory'] ?? []
+        );
 
         $this->commentaries = $companyDetails['report']['additionalInformation']['commentaries'] ?? [];
         $this->creditScore = new Company\CreditScore($this, $companyDetails['report']['creditScore'] ?? []);
-        $this->shareholders = array_map(function ($shareholder) {
-            return new Company\Shareholder($this, $shareholder);
-        }, $companyDetails['report']['shareCapitalStructure']['shareHolders'] ?? []);
+        $this->shareholders = array_map(
+            function ($shareholder) {
+                return new Company\Shareholder($this, $shareholder);
+            }, $companyDetails['report']['shareCapitalStructure']['shareHolders'] ?? []
+        );
 
         $this->numberOfSharesIssued = $companyDetails['report']['shareCapitalStructure']['numberOfSharesIssued'] ?? null;
         $this->issuedShareCapital = $companyDetails['report']['shareCapitalStructure']['issuedShareCapital'] ?? [];
@@ -249,6 +262,7 @@ class Company
 
     /**
      *  Gets financialStatements
+     *
      * @return array Returns an array of financial statements
      */
     public function getFinancialStatements() : array
@@ -267,7 +281,7 @@ class Company
 
     /**
      *
-     * @return string  Returns the number of shares issued
+     * @return int|null Returns the number of shares issued
      */
     public function getNumberOfSharesIssued() : ?int
     {
