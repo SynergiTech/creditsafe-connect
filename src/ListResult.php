@@ -15,6 +15,8 @@ class ListResult implements \Iterator
     protected $currentPagePos = null;
     protected $currentRecordPos = null;
     protected $currentRecordSet = [];
+    protected $maxPageRecord;
+    protected $minPageRecord;
 
     /**
      * This constructor is used to build the ListResult

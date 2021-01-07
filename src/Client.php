@@ -25,6 +25,21 @@ class Client
     protected $config;
 
     /**
+     * @var Service\CountryService
+     */
+    protected $countries;
+
+    /**
+     * @var Service\CompanyService
+     */
+    protected $company;
+
+    /**
+     * @var Service\CompanyEventService
+     */
+    protected $monitor;
+
+    /**
      * construct function that builds the client class
      * @param array $config creditsafe configuration
      */

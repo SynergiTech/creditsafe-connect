@@ -42,13 +42,17 @@ class Company
     {
         $this->client = $client;
         $this->companyID = $companyDetails['report']['companyId'];
-        $this->businessName = $companyDetails['report']['companyIdentification']['basicInformation']['businessName'] ?? null;
-        $this->registeredCompanyName = $companyDetails['report']['companyIdentification']['basicInformation']['registeredCompanyName'] ?? null;
-        $this->companyRegistrationNumber = $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationNumber'] ?? null;
+        $this->businessName =
+            $companyDetails['report']['companyIdentification']['basicInformation']['businessName'] ?? null;
+        $this->registeredCompanyName =
+            $companyDetails['report']['companyIdentification']['basicInformation']['registeredCompanyName'] ?? null;
+        $this->companyRegistrationNumber =
+            $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationNumber'] ?? null;
         $this->country = $companyDetails['report']['companyIdentification']['basicInformation']['country'] ?? null;
 
         if (isset($companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'])) {
-            $this->companyRegistrationDate = $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'];
+            $this->companyRegistrationDate =
+                $companyDetails['report']['companyIdentification']['basicInformation']['companyRegistrationDate'];
         }
 
         $this->mainAddress = $companyDetails['report']['contactInformation']['mainAddress'] ?? [];
@@ -77,7 +81,8 @@ class Company
             return new Company\Shareholder($this, $shareholder);
         }, $companyDetails['report']['shareCapitalStructure']['shareHolders'] ?? []);
 
-        $this->numberOfSharesIssued = $companyDetails['report']['shareCapitalStructure']['numberOfSharesIssued'] ?? null;
+        $this->numberOfSharesIssued =
+            $companyDetails['report']['shareCapitalStructure']['numberOfSharesIssued'] ?? null;
         $this->issuedShareCapital = $companyDetails['report']['shareCapitalStructure']['issuedShareCapital'] ?? [];
         $this->mortgageSummary = $companyDetails['report']['additionalInformation']['mortgageSummary'] ?? [];
         $this->mortgages = $companyDetails['report']['additionalInformation']['mortgageDetails'] ?? null;
