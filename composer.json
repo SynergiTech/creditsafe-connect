@@ -33,7 +33,7 @@
         ],
         "lint": [
             "vendor/bin/parallel-lint --no-colors --exclude vendor .",
-            "vendor/bin/phpcs --ignore=data,vendor --standard=PSR2 ."
+            "vendor/bin/phpcs --ignore=data,vendor --standard=PSR12 ."
         ],
         "phpstan": [
             "vendor/bin/phpstan analyse --memory-limit=2G src"
