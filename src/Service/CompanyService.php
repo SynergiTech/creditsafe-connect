@@ -30,7 +30,7 @@ class CompanyService
      */
     public function search(array $params) : ListResult
     {
-        $list = new ListResult($this->client, CompanySearchResult::class, 'companies', $params);
+        $list = new ListResult($this->client, CompanySearchResult::class, 'companies', $params, 'companies');
         return $list;
     }
 

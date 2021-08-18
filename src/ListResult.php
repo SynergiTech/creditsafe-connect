@@ -17,21 +17,24 @@ class ListResult implements \Iterator
     protected $currentRecordSet = [];
     protected $maxPageRecord;
     protected $minPageRecord;
+    protected $resultKey;
 
     /**
      * This constructor is used to build the ListResult
      * @param Client $client       Used to set the client in the ListResult Class
-     * @param string $targetClass  Used to set a dynamic class in the LisrResult Class
-     *  allowing for ListResult to be used on different classes
-     * @param string $endpoint    Used to set the endpoint for which the ListResult Class is using
-     * @param array $params      Used tp set the params for which the ListResult Class is using
+     * @param string $targetClass  Used to set a dynamic class in the ListResult Class
+     *                             allowing for ListResult to be used on different classes
+     * @param string $endpoint     Used to set the endpoint for which the ListResult Class is using
+     * @param array $params        Used to set the params for which the ListResult Class is using
+     * @param string $resultKey    The key in the response to iterate through
      */
-    public function __construct(Client $client, string $targetClass, string $endpoint, array $params)
+    public function __construct(Client $client, string $targetClass, string $endpoint, array $params, string $resultKey)
     {
         $this->client = $client;
         $this->targetClass = $targetClass;
         $this->endpoint = $endpoint;
         $this->params = $params;
+        $this->resultKey = $resultKey;
         $this->page(1);
     }
 
@@ -88,7 +91,8 @@ class ListResult implements \Iterator
     {
         $results = [];
         $resultSet = $this->client->get($this->endpoint, $this->getParams());
-        foreach ($resultSet['companies'] as $company) {
+
+        foreach ($resultSet[$this->resultKey] as $company) {
             $results[] = new $this->targetClass($this->client, $company);
         }
 
