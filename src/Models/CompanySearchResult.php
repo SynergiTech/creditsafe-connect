@@ -101,7 +101,7 @@ class CompanySearchResult
      *
      * @return string Get ID
      */
-    public function getID() : string
+    public function getID(): string
     {
         return $this->id;
     }
@@ -110,7 +110,7 @@ class CompanySearchResult
      * Get Country
      * @return string Get Country
      */
-    public function getCountry() : string
+    public function getCountry(): string
     {
         return $this->country ?? '';
     }
@@ -119,7 +119,7 @@ class CompanySearchResult
      *
      * @return string Get Reference Number
      */
-    public function getRefNo() : string
+    public function getRefNo(): string
     {
         return $this->regNo ?? '';
     }
@@ -128,7 +128,7 @@ class CompanySearchResult
      *
      * @return string Get Safe Number
      */
-    public function getSafeNo() : string
+    public function getSafeNo(): string
     {
         return $this->safeNo ?? '';
     }
@@ -137,7 +137,7 @@ class CompanySearchResult
      *
      * @return string Get Company  Name
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name ?? '';
     }
@@ -146,7 +146,7 @@ class CompanySearchResult
      *
      * @return array Get Address
      */
-    public function getAddress() : array
+    public function getAddress(): array
     {
         return $this->address ?? [];
     }
@@ -155,7 +155,7 @@ class CompanySearchResult
      *
      * @return string Get Status
      */
-    public function getStatus() : string
+    public function getStatus(): string
     {
         return $this->status ?? '';
     }
@@ -164,7 +164,7 @@ class CompanySearchResult
      *
      * @return string Get Type
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type ?? '';
     }
@@ -172,7 +172,7 @@ class CompanySearchResult
     /**
      * @return string Get OfficeType
      */
-    public function getOfficeType() : string
+    public function getOfficeType(): string
     {
         return $this->officeType ?? '';
     }
@@ -180,7 +180,7 @@ class CompanySearchResult
     /**
      * @return array
      */
-    public function getTradingNames() : array
+    public function getTradingNames(): array
     {
         return $this->tradingNames ?? [];
     }
@@ -188,7 +188,7 @@ class CompanySearchResult
     /**
      * @return array
      */
-    public function getVatNo() : array
+    public function getVatNo(): array
     {
         return $this->vatNo ?? [];
     }
@@ -197,7 +197,7 @@ class CompanySearchResult
      *
      * @return DateTime Get Date Of Latest Change
      */
-    public function getDateOfLatestChange() : \DateTime
+    public function getDateOfLatestChange(): \DateTime
     {
         return  new \DateTime($this->dateOfLatestChange);
     }
@@ -205,7 +205,7 @@ class CompanySearchResult
      *  Gets the company from a company searches result
      * @return Company Returns the Company Report
      */
-    public function get() : Company
+    public function get(): Company
     {
         return $this->client->companies()->get($this->getID());
     }

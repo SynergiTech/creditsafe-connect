@@ -5,17 +5,18 @@ namespace SynergiTech\Creditsafe\Models\Company;
 use SynergiTech\Creditsafe\Models\Company;
 
 /**
- * [Shareholder description]
+ * [Shareholder description].
  */
 class Shareholder
 {
     protected $company;
     protected $shareholderDetails;
+
     /**
-     * [__construct description]
+     * [__construct description].
+     *
      * @param Company $company            Used to store the client in the Company Class
      * @param array   $shareholderDetails Shareholder Data that needs to be stored in the Shareholder Class
-
      */
     public function __construct(Company $company, array $shareholderDetails)
     {
@@ -28,46 +29,41 @@ class Shareholder
     }
 
     /**
-     *
      * @return string Returns Shareholder Name
      */
-    public function getShareHolderName() : string
+    public function getShareHolderName(): string
     {
         return $this->shareholderDetails['name'] ?? '';
     }
 
     /**
-     *
      * @return string Returns the type of shareholder
      */
-    public function getshareholderType() : string
+    public function getshareholderType(): string
     {
         return $this->shareholderDetails['shareholderType'] ?? '';
     }
 
     /**
-     *
      * @return string Returns the shareholder percetage
      */
-    public function getShareHolderPercentage() : string
+    public function getShareHolderPercentage(): string
     {
         return $this->shareholderDetails['percentSharesHeld'] ?? '';
     }
 
     /**
-     *
      * @return string Returns the num of shares owned
      */
-    public function getNumOfSharesOwned() : string
+    public function getNumOfSharesOwned(): string
     {
-        return $this->shareholderDetails['numberOfSharesOwned'] ?? '' ;
+        return $this->shareholderDetails['numberOfSharesOwned'] ?? '';
     }
 
     /**
-     *
      * @return string Returns the share type
      */
-    public function getShareType() : string
+    public function getShareType(): string
     {
         return $this->shareholderDetails['shareType'] ?? '';
     }
