@@ -17,6 +17,7 @@ class ListResult implements \Iterator
     protected $currentRecordSet = [];
     protected $maxPageRecord;
     protected $minPageRecord;
+    protected $maxAllowedPage = 13;
     protected $resultKey;
 
     /**
@@ -90,7 +91,7 @@ class ListResult implements \Iterator
     }
 
     /**
-     * fetch Page.
+     * Fetch the current page.
      *
      * @return array Returns the results for a page
      */
@@ -99,15 +100,15 @@ class ListResult implements \Iterator
         $results = [];
         $resultSet = $this->client->get($this->endpoint, $this->getParams());
 
-        foreach ($resultSet[$this->resultKey] as $company) {
-            $results[] = new $this->targetClass($this->client, $company);
+        foreach ($resultSet[$this->resultKey] as $result) {
+            $results[] = new $this->targetClass($this->client, $result);
         }
 
         return $results;
     }
 
     /**
-     *  Rewind  to the first page.
+     *  Rewind to the first page.
      */
     public function rewind(): void
     {
@@ -129,9 +130,12 @@ class ListResult implements \Iterator
      */
     public function next(): void
     {
-        $this->currentRecordPos++;
-        if ($this->currentRecordPos > $this->maxPageRecord) {
-            $this->page($this->currentPagePos+1);
+        ++$this->currentRecordPos;
+        if (
+            $this->currentRecordPos > $this->maxPageRecord
+            && $this->currentPagePos < $this->maxAllowedPage
+        ) {
+            $this->page($this->currentPagePos + 1);
         }
     }
 
@@ -148,6 +152,7 @@ class ListResult implements \Iterator
      */
     public function valid(): bool
     {
-        return !($this->key() >= count($this->currentRecordSet) && count($this->currentRecordSet) != $this->pageSize);
+        return $this->key() < count($this->currentRecordSet)
+            && $this->currentPagePos <= $this->maxAllowedPage;
     }
 }
