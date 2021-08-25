@@ -265,10 +265,10 @@ class Company
     
     /**
      *
-     * @return string  Return personsWithSignificantControl
+     * @return array  Return personsWithSignificantControl
      */
     public function getPersonsWithSignificantControl() : array
     {
-        return $this->personsWithSignificantControl ?? '';
+        return $this->personsWithSignificantControl ?? [];
     }
 }
