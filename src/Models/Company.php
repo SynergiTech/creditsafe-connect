@@ -31,6 +31,7 @@ class Company
     protected $negativeInfo;
     protected $rawDetails;
     protected $financialStatements;
+    protected $personsWithSignificantControl;
 
     /**
      * Function constructs the Company Class.
@@ -89,6 +90,7 @@ class Company
         $this->mortgages = $companyDetails['report']['additionalInformation']['mortgageDetails'] ?? null;
         $this->negativeInfo = $companyDetails['report']['negativeInformation'] ?? [];
         $this->rawDetails = $companyDetails;
+        $this->personsWithSignificantControl = $companyDetails['report']['additionalInformation']['personsWithSignificantControl']['activePSC'] ?? [];
     }
 
     /**
@@ -259,5 +261,14 @@ class Company
     public function getNumberOfSharesIssued(): ?int
     {
         return $this->numberOfSharesIssued;
+    }
+    
+    /**
+     *
+     * @return string  Return personsWithSignificantControl
+     */
+    public function getPersonsWithSignificantControl() : array
+    {
+        return $this->personsWithSignificantControl ?? '';
     }
 }
