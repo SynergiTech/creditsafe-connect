@@ -3,7 +3,7 @@
     "type": "library",
     "require": {
         "php": ">=7.1",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^6.3|^7.0.1",
         "lcobucci/jwt": "^3.2.5"
     },
     "require-dev": {
