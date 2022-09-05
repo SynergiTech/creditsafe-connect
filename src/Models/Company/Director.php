@@ -27,14 +27,16 @@ class Director
             $this->directorDetails['dateOfBirth'] =  new \DateTime($this->directorDetails['dateOfBirth']);
         }
 
-        $this->directorDetails['positions'] = array_map(function ($position) {
-            //Add if statement to check if position exists
-            if (isset($position['dateAppointed'])) {
-            //Can't assign datetime due to previousDirectors not having dateAppointed
-                $position['dateAppointed'] = new \DateTime($position['dateAppointed']);
-            }
-            return $position;
-        }, $this->directorDetails['positions']);
+        if (isset($this->directorDetails['positions'])) {
+            $this->directorDetails['positions'] = array_map(function ($position) {
+                //Add if statement to check if position exists
+                if (isset($position['dateAppointed'])) {
+                    //Can't assign datetime due to previousDirectors not having dateAppointed
+                    $position['dateAppointed'] = new \DateTime($position['dateAppointed']);
+                }
+                return $position;
+            }, $this->directorDetails['positions']);
+        }
         $this->current = $current;
     }
 
