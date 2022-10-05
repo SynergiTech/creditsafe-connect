@@ -59,11 +59,11 @@ class Company
         $this->otherAddresses = $companyDetails['report']['contactInformation']['otherAddresses'] ?? [];
 
         $this->currentDirectors = array_map(function ($director) {
-            return new Company\Director($this, $director, true);
+            return new Company\Director($this, $director);
         }, $companyDetails['report']['directors']['currentDirectors'] ?? []);
 
         $this->previousDirectors = array_map(function ($director) {
-            return new Company\Director($this, $director, false);
+            return new Company\PreviousDirector($this, $director);
         }, $companyDetails['report']['directors']['previousDirectors'] ?? []);
 
         $this->financialStatements = array_map(function ($statement) {
