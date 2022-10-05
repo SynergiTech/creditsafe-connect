@@ -73,14 +73,16 @@ class Client
             ]);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $message = 'There was a problem authenticating with the Creditsafe API';
+            $code = 400;
             if ($e->hasResponse()) {
                 $body = $e->getResponse()->getBody();
                 $details = json_decode($body, true);
                 if (json_last_error() === JSON_ERROR_NONE && isset($details['message'])) {
                     $message = $details['message'];
                 }
+                $code = $e->getResponse()->getStatusCode();
             }
-            throw new Exception\Unauthorized($message, 400, $e);
+            throw new Exception\Unauthorized($message, $code, $e);
         }
         $decode = json_decode((string) $authenticate->getBody(), true);
         $this->setToken($decode['token']);
