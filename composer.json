@@ -3,7 +3,7 @@
     "type": "library",
     "require": {
         "php": ">=7.1",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^6.3 || ^7.0",
         "lcobucci/jwt": "^3.2.5"
     },
     "require-dev": {
@@ -13,12 +13,6 @@
         "phpstan/phpstan": "^0.12.65"
     },
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Sean Lane",
-            "email": "sean@synergitech.co.uk"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "SynergiTech\\Creditsafe\\" : "src/",
