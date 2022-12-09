@@ -3,6 +3,9 @@ FROM php:$PHP_VERSION-cli-alpine
 
 RUN apk add git zip unzip autoconf make g++
 
+# apparently newer xdebug needs these now?
+RUN apk add --update linux-headers
+
 RUN if [ -z "${PHP_VERSION##7\.*}" ]; then \
     pecl install xdebug-2.9.8 && docker-php-ext-enable xdebug; \
 else \
