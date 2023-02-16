@@ -108,6 +108,7 @@ class ListResult implements \Iterator
      * Get the current page
      * @return array
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->currentRecordSet[$this->key()];
