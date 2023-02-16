@@ -23,4 +23,4 @@ RUN composer install
 
 COPY . .
 
-RUN composer test
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer test
