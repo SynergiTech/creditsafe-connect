@@ -2,7 +2,8 @@
 
 namespace SynergiTech\Creditsafe;
 
-use Lcobucci\JWT\Parser;
+use Lcobucci\JWT\Token\Parser;
+use Lcobucci\JWT\Encoding\JoseEncoder;
 use Lcobucci\JWT\Token;
 use GuzzleHttp\Psr7;
 
@@ -33,7 +34,10 @@ class Client
      * @var Service\CompanyService
      */
     protected $company;
-
+    /**
+     * @var Service\PortfolioService
+     */
+    protected $portfolio;
     /**
      * @var Service\CompanyEventService
      */
@@ -96,7 +100,7 @@ class Client
      */
     public function setToken(string $token) : void
     {
-        $this->token = (new Parser())->parse($token);
+        $this->token = (new Parser(new JoseEncoder()))->parse($token);
     }
 
     /**
@@ -137,13 +141,13 @@ class Client
 
         $guzzleArgs =  [
             'headers' => [
-                'Authorization' => (string) $this->token
+                'Authorization' => (string) $this->token->toString()
             ],
         ];
 
         if ($type == 'GET') {
             $guzzleArgs['query'] = $params;
-        } else {
+        } else if($type == 'POST' || $type == 'PUT'){
             $guzzleArgs['json'] = $params;
         }
 
@@ -183,6 +187,7 @@ class Client
 
         $res = (array)json_decode((string) $res->getBody(), true);
 
+
         return $res;
     }
 
@@ -195,6 +200,28 @@ class Client
     public function get(string $endpoint, array $params = []) : array
     {
         return $this->request('GET', $endpoint, $params);
+    }
+
+    /**
+     *  A function that handles the creation of a POST  Request
+     * @param  string $endpoint  An endpoint used to create a request
+     * @param  array  $params   Sets params for an endpoint
+     * @return array  Returns the results of the endpoint
+     */
+    public function post(string $endpoint, array $params = []) : array
+    {
+        return $this->request('POST', $endpoint, $params);
+    }
+
+    /**
+     *  A function that handles the creation of a DELETE  Request
+     * @param  string $endpoint  An endpoint used to create a request
+     * @param  array  $params   Sets params for an endpoint
+     * @return array  Returns the results of the endpoint
+     */
+    public function delete(string $endpoint, array $params = []) : array
+    {
+        return $this->request('DELETE', $endpoint, $params);
     }
 
     /**
@@ -234,12 +261,25 @@ class Client
     }
 
     /**
+     *  Get portfolio services
+     * @return Service\PortfolioService Returns Portfolio Services
+     */
+    public function portfolio() : Service\PortfolioService
+    {
+        if (!isset($this->portfolio)) {
+            $this->portfolio = new Service\PortfolioService($this);
+        }
+        return $this->portfolio;
+    }
+
+    /**
      * @return array
      */
     public function getDefaultConfig() : array
     {
         return [
-            'apiURI' => 'https://connect.creditsafe.com/',
+            'apiURI' => \config('creditsafe.api_uri'),
+            'apiVersion' => \config('creditsafe.api_version'),
         ];
     }
 
@@ -267,6 +307,6 @@ class Client
      */
     protected function getApiVersion() : string
     {
-        return 'v1';
+        return $this->config['apiVersion'];
     }
 }
