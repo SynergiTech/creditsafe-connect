@@ -1,5 +1,5 @@
 {
-    "name": "synergitech/creditsafe-connect",
+    "name": "kjsoftware/creditsafe-connect",
     "type": "library",
     "require": {
         "php": "^8.0.2",
