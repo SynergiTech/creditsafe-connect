@@ -28,8 +28,8 @@ $creditsafe->countries()->access();
 
 $creditsafe->companies()->searchCriteria(['countries' => 'GB']);
 
-
 ```
+
 ### Company search pagination
 ```php
 $search = $creditsafe->companies()->search(['countries' => 'GB', 'name' => 'GOOGLE UK LIMITED']);
@@ -39,9 +39,24 @@ foreach ($search as $result) {
 }
 ```
 
+### Get Custom report data options
+```php
+$creditsafe->()->reportCustomData()->get('DE');
+```
+
 ### Get company report
 ```php
 $creditsafe->companies()->get('GB001-0-03977902');
+```
+
+### Change report language
+```php
+$creditsafe->companies()->get('GB001-0-03977902', 'FR');
+```
+
+### Adding reason code as extra parameter needed for German reports
+```php
+$creditsafe->companies()->get('GB001-0-03977902', 'DE', ['customData' => 'de_reason_code::1']);
 ```
 
 ## Running tests
