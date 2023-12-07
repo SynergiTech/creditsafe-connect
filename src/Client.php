@@ -11,7 +11,6 @@ use GuzzleHttp\Psr7;
  */
 class Client
 {
-
     protected $http_client;
 
     /**
@@ -40,6 +39,11 @@ class Client
     protected $monitor;
 
     /**
+     * @var Service\ReportCustomData
+     */
+    protected $reportCustomData;
+
+    /**
      * construct function that builds the client class
      * @param array $config creditsafe configuration
      */
@@ -62,12 +66,12 @@ class Client
      * @return void
      * @throws Exception\Unauthorized if the provided authentication details are not valid
      */
-    public function authenticate() : void
+    public function authenticate(): void
     {
         try {
             $authenticate = $this->http_client->request('POST', 'authenticate', [
-                'json'=> [
-                    'username'=> $this->config['username'],
+                'json' => [
+                    'username' => $this->config['username'],
                     'password' => $this->config['password']
                 ]
             ]);
@@ -91,10 +95,10 @@ class Client
     /**
      * set token
      * @param string $token Token must be set to have access
-     *  to the api and is only valid for an hour
+     * to the api and is only valid for a hour
      * @return void
      */
-    public function setToken(string $token) : void
+    public function setToken(string $token): void
     {
         $this->token = (new Parser())->parse($token);
     }
@@ -102,7 +106,7 @@ class Client
     /**
      * @return Token
      */
-    public function getToken() : Token
+    public function getToken(): Token
     {
         return $this->token;
     }
@@ -111,7 +115,7 @@ class Client
      * Checks if token is valid
      * @return void
      */
-    public function checkToken() : void
+    public function checkToken(): void
     {
         /**
          * argument required as of lcobucci/jwt 3.4+
@@ -130,7 +134,7 @@ class Client
      * @param  array  $params   Sets params for a endpoint
      * @return array    Returns the results of the endpoint
      */
-    public function request(string $type, string $endpoint, array $params = []) : array
+    public function request(string $type, string $endpoint, array $params = []): array
     {
 
         $this->checkToken();
@@ -187,12 +191,12 @@ class Client
     }
 
     /**
-     *  A function that handles the creation of a GET  Request
+     *  A function that handles the creation of a GET Request
      * @param  string $endpoint  An endpoint used to create an request
-     * @param  array  $params   Sets params for a endpoint
+     * @param  array  $params   Sets params for an endpoint
      * @return array  Returns the results of the endpoint
      */
-    public function get(string $endpoint, array $params = []) : array
+    public function get(string $endpoint, array $params = []): array
     {
         return $this->request('GET', $endpoint, $params);
     }
@@ -201,7 +205,7 @@ class Client
      * Get Company Events
      * @return Service\CompanyEventService Returns Company Events
      */
-    public function monitoring() : Service\CompanyEventService
+    public function monitoring(): Service\CompanyEventService
     {
         if (!isset($this->monitor)) {
             $this->monitor = new Service\CompanyEventService($this);
@@ -210,10 +214,10 @@ class Client
     }
 
     /**
-     *  Get company services
+     * Get company services
      * @return Service\CompanyService Returns Company Services
      */
-    public function companies() : Service\CompanyService
+    public function companies(): Service\CompanyService
     {
         if (!isset($this->company)) {
             $this->company = new Service\CompanyService($this);
@@ -222,10 +226,10 @@ class Client
     }
 
     /**
-     *  Get Countries
+     * Get Countries
      * @return Service\CountryService  Returns the Countries
      */
-    public function countries() : Service\CountryService
+    public function countries(): Service\CountryService
     {
         if (!isset($this->countries)) {
             $this->countries = new Service\CountryService($this);
@@ -234,9 +238,21 @@ class Client
     }
 
     /**
+     * Get reportCustomData service
+     * @return Service\ReportCustomDataService
+     */
+    public function reportCustomData(): Service\ReportCustomDataService
+    {
+        if (is_null($this->reportCustomData)) {
+            $this->reportCustomData = new Service\ReportCustomDataService($this);
+        }
+        return $this->reportCustomData;
+    }
+
+    /**
      * @return array
      */
-    public function getDefaultConfig() : array
+    public function getDefaultConfig(): array
     {
         return [
             'apiURI' => 'https://connect.creditsafe.com/',
@@ -247,7 +263,7 @@ class Client
      *  Function gets the base url for the api by concatenating the API URL and the API version
      * @return string Returns a string containing the base url
      */
-    public function getBaseURL() : string
+    public function getBaseURL(): string
     {
         return $this->getApiURL().$this->getApiVersion().'/';
     }
@@ -256,7 +272,7 @@ class Client
      * Function gets the Api url
      * @return string Returns a string containing the api url
      */
-    protected function getApiURL() : string
+    protected function getApiURL(): string
     {
         return $this->config['apiURI'];
     }
@@ -265,7 +281,7 @@ class Client
      * Function gets the Api Version
      * @return string Returns a string containing the Api Version
      */
-    protected function getApiVersion() : string
+    protected function getApiVersion(): string
     {
         return 'v1';
     }

@@ -2,9 +2,9 @@
 
 namespace SynergiTech\Creditsafe\Service;
 
-use \SynergiTech\Creditsafe\ListResult;
-use \SynergiTech\Creditsafe\Models\CompanySearchResult;
-use \SynergiTech\Creditsafe\Models\Company;
+use SynergiTech\Creditsafe\ListResult;
+use SynergiTech\Creditsafe\Models\CompanySearchResult;
+use SynergiTech\Creditsafe\Models\Company;
 
 /**
  * This class is used by the client to call endpoints relating to a company
@@ -28,7 +28,7 @@ class CompanyService
      * @param  array  $params Contains params that can be passed to the endpoint
      * @return array   Returns the results of the search endpoint
      */
-    public function search(array $params) : ListResult
+    public function search(array $params): ListResult
     {
         $list = new ListResult($this->client, CompanySearchResult::class, 'companies', $params);
         return $list;
@@ -38,11 +38,13 @@ class CompanyService
      * This function is used to call the endpoint that gets the company report
      * @param string $id The ID of the given company that you want to get a report for
      * @param string $reportLang
-     * @return Company Returns the results of the  get endpoint
+     * @param array $params
+     * @return Company Returns the results of the get endpoint
      */
-    public function get(string $id, string $reportLang = 'en') : Company
+    public function get(string $id, string $reportLang = 'en', array $params = []): Company
     {
-        return new Company($this->client, $this->client->get('companies/'.$id, ['language' => $reportLang]));
+        $params = array_merge($params, ['language' => $reportLang]);
+        return new Company($this->client, $this->client->get('companies/'.$id, $params));
     }
 
     /**
@@ -51,7 +53,7 @@ class CompanyService
      * @param  array $params Contains params that can be passed to the endpoint
      * @return array    Returns the results of the  searchCriteria endpoint
      */
-    public function searchCriteria(array $params) :array
+    public function searchCriteria(array $params): array
     {
         return $this->client->get('companies/searchcriteria', $params);
     }
