@@ -13,7 +13,7 @@ use GuzzleHttp\Exception\RequestException;
 
 class Base extends TestCase
 {
-    public function dataToGuzzleMock($data)
+    public static function dataToGuzzleMock($data)
     {
         return array_map(function ($set) {
             $responses = [];

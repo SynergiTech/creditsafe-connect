@@ -1,4 +1,4 @@
-ARG PHP_VERSION=7.3
+ARG PHP_VERSION=8.2
 FROM php:$PHP_VERSION-cli-alpine
 
 RUN apk add git zip unzip autoconf make g++
