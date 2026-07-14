@@ -2,8 +2,9 @@
 
 namespace SynergiTech\Creditsafe;
 
-use Lcobucci\JWT\Parser;
+use Lcobucci\JWT\Encoding\JoseEncoder;
 use Lcobucci\JWT\Token;
+use Lcobucci\JWT\Token\Parser;
 use GuzzleHttp\Psr7;
 
 /**
@@ -14,7 +15,7 @@ class Client
     protected $http_client;
 
     /**
-     * @var string
+     * @var ?Token
      */
     protected $token;
 
@@ -100,7 +101,7 @@ class Client
      */
     public function setToken(string $token): void
     {
-        $this->token = (new Parser())->parse($token);
+        $this->token = (new Parser(new JoseEncoder()))->parse($token);
     }
 
     /**
@@ -141,7 +142,7 @@ class Client
 
         $guzzleArgs =  [
             'headers' => [
-                'Authorization' => (string) $this->token
+                'Authorization' => $this->token->toString()
             ],
         ];
 
